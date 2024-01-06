@@ -1,0 +1,5 @@
+20240106	23:22:06	6a1386e8-45ee-4e48-afb4-2b7be9eccca3	Error:	Not allowed by CORS
+20240106	23:22:06	d1499a6f-992f-467f-94d4-ab32e11f2c44	Error:	Not allowed by CORS
+20240106	23:27:53	61bf8b71-519e-479a-b6c0-5c5f3ed26833	Error:	ENOENT: no such file or directory, stat 'C:\Users\Namachivayam\Desktop\Projects\Medication-Remainder\error\404.html'
+20240106	23:30:46	2528e3eb-1ca7-43c1-b155-f826894a7ed9	Error:	ENOENT: no such file or directory, stat 'C:\Users\Namachivayam\Desktop\Projects\Medication-Remainder\error\404.html'
+20240106	23:30:49	6b6bcd22-83ed-4dba-b490-3868c4098c30	Error:	ENOENT: no such file or directory, stat 'C:\Users\Namachivayam\Desktop\Projects\Medication-Remainder\error\404.html'
