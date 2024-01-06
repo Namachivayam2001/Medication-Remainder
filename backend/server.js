@@ -28,7 +28,7 @@ app.use(loger) //logEvents.js middleware
 app.use(cors(corsOption)) //CROS origin resource sharing middleware
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'public')))
+app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use('/', require('./src/routers/index.js'))
 
