@@ -4,13 +4,13 @@ const path = require('path')
 const cors = require('cors')
 const {loger} = require('./middleware/logEvents.js')
 const errorHandler = require('./middleware/error-handler.js')
-const PORT = process.env.PORT || 3030
+const PORT = process.env.PORT || 3060
 
 //CROS origin resource sharing
 const whiteList = [
     'https://www.yoursite.com',
     'http://127.0.0.1:5500',
-    'http://loclahost:3030'
+    'http://loclahost:3060'
 ]
 
 const corsOption = {
@@ -31,6 +31,7 @@ app.use(express.json())
 app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use('/', require('./src/routers/index.js'))
+app.use('/schedule', require('./src/routers/schedule.js'))
 
 app.use(errorHandler) //error-handler.js middleware
 
