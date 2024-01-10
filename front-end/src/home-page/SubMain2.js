@@ -15,8 +15,6 @@ function SubMain2() {
       if (subNest1) {
         subNest1.style.width = subNest2Width + 'px';
         subNest1.style.height = subNest2Height/2 + subNest2Height + 'px';
-        subNest2.style.minWidth = subNest2Width - subNest2Width/3 + 'px';
-        subNest2.style.minHeight = subNest2Height + 'px';
       }
     }, []); // Empty dependency array ensures this effect runs once after initial render    
 

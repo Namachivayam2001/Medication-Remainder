@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { MdOutlineStar } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 const iconStyle = {
     color: '#f9a100',
@@ -20,9 +21,7 @@ function SubMain1() {
       const subNest2 = subNest2Ref.current;
       if (subNest2) {
         subNest2.style.width = subNest1Width + 'px';
-        subNest2.style.height = subNest1Height/5 + subNest1Height + 'px';
-        subNest2.style.minWidth = subNest1Width - subNest1Width/3 + 'px';
-        subNest2.style.minHeight = subNest1Height + 'px';
+        subNest2.style.height = subNest1Height + 'px';
       }
     }, []); // Empty dependency array ensures this effect runs once after initial render    
 
@@ -32,7 +31,9 @@ function SubMain1() {
             <div id="sub-nest-1-1"  ref={subNest1Ref}>
                 <h1>Never Miss a Dose Again</h1>
                 <p>Stay on track with your medications using Medi Remind, the medication reminder application.</p>
-                <button>Schedule</button>
+                <Link to="/form/schedule">
+                    <button>Schedule</button>
+                </Link>
                 <div id="ratting">
                     <div id="stars">
                         <MdOutlineStar style={iconStyle} />

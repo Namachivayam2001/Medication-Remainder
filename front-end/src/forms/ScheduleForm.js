@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import './scheduleForm.css';
+import { useNavigate } from 'react-router-dom';
 
 function ScheduleForm() {
+    const navigate = useNavigate();
+
+    const submit = () => {
+        navigate('/');
+    }
+
     const [days, setDays] = useState('');  // Add this line
     const [hint, setHint] = useState(''); 
     const [daysError, setDaysError] = useState('');
@@ -23,6 +30,7 @@ function ScheduleForm() {
         <form 
             id="form" 
             action="/schedule-form-submit" 
+            onSubmit={submit}
             method="POST"
         >
             <h1 className="form-items">schedule</h1>

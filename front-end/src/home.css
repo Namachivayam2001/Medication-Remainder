@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 10px;
-  box-shadow: 0 0 10px #fff;
+  box-shadow: inset 0 0 5px #000;
   position: fixed;
   top: 0;
   left: 0;
@@ -24,6 +24,13 @@
   padding: 5px 10px;
   width: 100%;
   text-align: center;
+  font-weight: bold;
+}
+
+.navebar a{
+  text-decoration: none;
+  width: 100%;
+  color: #fff;
   font-weight: bold;
 }
 
@@ -145,7 +152,7 @@ img{
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  box-shadow: 0 0 20px #000;
+  box-shadow: inset 0 0 10px #fff;
 }
 
 /* sub-main-2 */
@@ -172,7 +179,7 @@ img{
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  box-shadow: 0 0 20px;
+  box-shadow: 0 0 5px #fff;
 }
 
 #sub-nest-2-2 p{
@@ -196,7 +203,7 @@ img{
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  box-shadow: 0 0 20px;
+  box-shadow: 0 0 20px #fff;
 }
 
 #sub-container-3{
