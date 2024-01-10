@@ -4,9 +4,10 @@
 /node_modules
 /backend/logs
 /backend/node_modules
-/frontend
+/front-end/node_modules
 /.pnp
 .pnp.js
+.vscode
 
 # testing
 /coverage

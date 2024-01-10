@@ -1,4 +1,3 @@
-const mysql = require('mysql2/promise');
 const pool = require('./connection.js');
 
 module.exports = async (table_name, data) => {
