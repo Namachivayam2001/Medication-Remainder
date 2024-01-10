@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 100%;
+}
+
+input{
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-items{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+form{
+    max-width: 400px;
+    margin: 50px auto;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    box-shadow: 0 0 10px white;
+}
+
+.days, .time{
+    width: 50%;
+}
+
+h1{
+    margin: 0 auto;
+    padding: 10px;
+    margin-bottom: 5px;;
+}
+
+label{
+    font-weight: bolder;
+    margin-top: 20px;
+}
+
+button{
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    width: fit-content;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+input:focus{
+    outline: none;
+    border-color: blue;
+}
+
+input[type="number"], input[type="text"]{
+    font-size: 17px;
+}
+
+.error-message{
+    font-size: small;
+    color: red;
+    margin-top: -8px;
+    margin-left: 5px;
+    background-color: #fff;
+    width: fit-content;
+    margin-bottom: -7px;
+}
+
+#error-message{
+    position: relative;
+    top: -9px;
+}
+
+#hint-container{
+    padding-top: 20px;
+}
