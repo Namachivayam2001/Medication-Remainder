@@ -1,37 +1,55 @@
 import React, { useState } from 'react';
 import './scheduleForm.css';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Header from '../home-page/Header';
 
 function ScheduleForm() {
-    const navigate = useNavigate();
-
-    const submit = () => {
-        navigate('/');
-    }
-
+   
     const [days, setDays] = useState('');  // Add this line
     const [hint, setHint] = useState(''); 
     const [daysError, setDaysError] = useState('');
     const [hintError, setHintError] = useState('');
+    const [data, setData] = useState({
+        time: '',
+        days: '',
+        hint: ''
+    })
 
+    const submit = async(e) => {
+
+        try {
+            const response = await axios.post('http://localhost:3030/schedule/form', data);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error posting data:', error);
+        }
+        
+    }
+    
     const handleDaysChange = (event) => {
         const days = event.target.value;
         setDays(days);
         setDaysError(days < 1 || days > 100 ? 'Days must be 1 and 100' : '');
+        if(!daysError){
+            setData({...data, days: days});
+        }
     };
 
     const handleHintChange = (event) => {
         const hint = event.target.value;
         setHint(hint);
         setHintError(hint.length < 1 || hint.length > 100 ? 'Hint must be 1 and 100 characters' : '');
+        if(!hintError){
+            setData({...data, hint: hint});
+        }
     };
+
     return (
       <div className="container">
+        <Header />
         <form 
             id="form" 
-            action="/schedule-form-submit" 
-            onSubmit={submit}
-            method="POST"
+            onSubmit={(e) => submit(e)}
         >
             <h1 className="form-items">schedule</h1>
             <div className="form-items">
@@ -42,6 +60,7 @@ function ScheduleForm() {
                         id="timeInput" 
                         name="userTime" 
                         required 
+                        onChange={(e) => {setData({...data, time: e.target.value})}}
                     />    
                 </div>
                 <div className="days">

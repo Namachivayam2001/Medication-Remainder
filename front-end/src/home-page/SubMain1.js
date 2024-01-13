@@ -13,7 +13,7 @@ function SubMain1() {
             <div id="sub-nest-1-1"  >
                 <h1>Never Miss a Dose Again</h1>
                 <p>Stay on track with your medications using Medi Remind, the medication reminder application.</p>
-                <Link to="/form/schedule">
+                <Link to="/schedule/form">
                     <button>Schedule</button>
                 </Link>
                 <div id="ratting">

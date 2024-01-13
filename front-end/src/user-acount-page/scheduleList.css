@@ -1,0 +1,58 @@
+#scheduleListContainer{
+    background-image: url('../../public/images/v870-tang-37.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+#scheduleListContainer ul{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#scheduleListContainer ul li{
+    width: 95%;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 10px;;
+    background-color: #fff;
+    flex-wrap: wrap;
+}
+
+#scheduleListContainer ul li span{
+    margin: 5px;
+    text-align: center;
+}
+
+.custom-list #title{
+    background-color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    color: white;
+}
+
+.time{
+    width: 15%;
+}
+
+.days{
+    width: 8%;
+}
+
+.hint{
+    width: 70%;
+}
+    
