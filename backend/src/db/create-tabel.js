@@ -5,7 +5,7 @@ module.exports = async (tableName, tableDefinition) => {
         const connection = await pool.getConnection();
         await connection.query(`CREATE TABLE IF NOT EXISTS ${tableName} (${tableDefinition})`);
     } catch (err) {
-        console.error(err);
-        throw err; // Re-throw for higher-level handling
+        console.error('Error tabel creation:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 };

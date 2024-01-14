@@ -4,7 +4,6 @@ import axios from 'axios';
 import Header from '../home-page/Header';
 
 function ScheduleForm() {
-   
     const [days, setDays] = useState('');  // Add this line
     const [hint, setHint] = useState(''); 
     const [daysError, setDaysError] = useState('');
@@ -12,20 +11,21 @@ function ScheduleForm() {
     const [data, setData] = useState({
         time: '',
         days: '',
-        hint: ''
+        hint: '',
+        notification: true
     })
 
+    /* handle form submition for post the data to server */
     const submit = async(e) => {
-
         try {
-            const response = await axios.post('http://localhost:3030/schedule/form', data);
-            console.log(response.data);
+            await axios.post('http://localhost:3030/schedule/form', data);
+            alert('form submited successfully')
         } catch (error) {
             console.error('Error posting data:', error);
         }
-        
     }
-    
+
+    /* validate 1 <= days <= 100 */
     const handleDaysChange = (event) => {
         const days = event.target.value;
         setDays(days);
@@ -34,7 +34,8 @@ function ScheduleForm() {
             setData({...data, days: days});
         }
     };
-
+    
+    /* hint 1 <= Char <= 100 */
     const handleHintChange = (event) => {
         const hint = event.target.value;
         setHint(hint);
@@ -49,11 +50,11 @@ function ScheduleForm() {
         <Header />
         <form 
             id="form" 
-            onSubmit={(e) => submit(e)}
+            onSubmit={submit}
         >
             <h1 className="form-items">schedule</h1>
             <div className="form-items">
-                <div className="time">
+                <div className="formTime">
                     <label>Time*</label>
                     <input 
                         type="time" 
@@ -63,7 +64,7 @@ function ScheduleForm() {
                         onChange={(e) => {setData({...data, time: e.target.value})}}
                     />    
                 </div>
-                <div className="days">
+                <div className="formDays">
                     <label>days*</label>                    
                     <input 
                         type="number" 
@@ -82,7 +83,7 @@ function ScheduleForm() {
             <input 
                 className="form-items" 
                 type="text" 
-                id="hint" 
+                id="formHint" 
                 name="hint" 
                 placeholder="What you remember"
                 required 
