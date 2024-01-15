@@ -9,13 +9,25 @@ function ScheduleList() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Helper function to convert 24-hour time format to 12-hour time format
+    const convertTo12HourFormat = (time24) => {
+        const [hours, minutes] = time24.split(':');
+        const suffix = hours >= 12 ? 'PM' : 'AM';
+        const formattedHours = hours % 12 || 12;
+        return `${formattedHours}:${minutes} ${suffix}`;
+    };
+    
     /* Fetching the data from server when it renders */
     useEffect(() => {
         const fetchData = async () => {
             console.log('fetch')
             try {
                 const response = await axios.get('http://localhost:3030/schedule/data');
-                setData(response.data);
+                const formattedData = response.data.map(item => ({
+                    ...item,
+                    time: convertTo12HourFormat(item.time),
+                }));
+                setData(formattedData);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -24,7 +36,7 @@ function ScheduleList() {
         };
         fetchData();
     }, []);
-    
+
     if (loading) {
         return <p id ="loding">Loading...</p>;
     }
@@ -65,28 +77,35 @@ function ScheduleList() {
             <Header />
             <div id="scheduleListContainer">  
                 <h2>Your Schedule List</h2>
-                <ul className="custom-list">
-                    <li id="title">
-                        <span className="time">Time</span>
-                        <span className="days">Days</span>
-                        <span className="hint">Hint</span>
-                    </li>
+                <table className="custom-list">
+                    <tr id="title">
+                        <th className="time-head">Time</th>
+                        <th className="days-head">Days</th>
+                        <th className="hint-head">Hint</th>
+                    </tr>
                     {data.map((item) => (
-                        <li 
+                        <tr 
                             key={item.id} 
                         >
                             <>
-                                <span className="time">{item.time}</span>
-                                <span className="days">{item.days}</span>
-                                <span className="hint">{item.hint}</span>
-                                <button onClick={() => handleToggle(item.id)}>
-                                    {item.notification ? <FaToggleOn /> : <FaToggleOff />}
-                                </button>
-                                <button onClick={() => handleDelete(item.id)}>Delete</button>
+                                <td className="time">{item.time}</td>
+                                <td className="days">{item.days}</td>
+                                <td className="hint">
+                                    <div id="hint-left-div">
+                                        {item.hint}
+                                    </div>
+                                    <div id="hint-right-div">
+                                        <button className="toggle-btn" onClick={() => handleToggle(item.id)}>
+                                            {item.notification ? <FaToggleOn /> : <FaToggleOff />}
+                                        </button>
+                                        <button className="delete-btn" onClick={() => handleDelete(item.id)}>Delete</button>
+                                    </div>
+                                </td>
+                                
                             </>               
-                        </li>
+                        </tr>
                     ))}
-                </ul>
+                </table>
             </div>
         </>
     );

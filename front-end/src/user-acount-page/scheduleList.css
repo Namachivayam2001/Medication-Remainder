@@ -1,6 +1,5 @@
 #scheduleListContainer{
     width: 100%;
-    height: 100%;
     background-image: url('../../public/images/v870-tang-37.jpg');
 	background-size: cover;
 	background-position: center;
@@ -9,55 +8,72 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 48px;
+    padding-top: 60px;
 }
 
-#scheduleListContainer ul{
+#scheduleListContainer table{
     width: 80%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
+    border-collapse: separate;
+    border-spacing: 0 15px;
 }
 
-#scheduleListContainer ul li{
-    width: 95%;
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid black;
-    border-radius: 10px;;
+#scheduleListContainer table tr{
+    border: 1px solid;
+    padding: 5px;
     background-color: #fff;
-    flex-wrap: wrap;
 }
 
-#scheduleListContainer ul li span{
-    margin: 5px;
+#scheduleListContainer table tr td {
     text-align: center;
+    padding: 5px;
 }
 
-.custom-list #title{
-    background-color: rgba(0, 0, 0, 0.5);
-    font-weight: bold;
+#scheduleListContainer table tr th {
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
     color: white;
 }
 
-.time{
-    width: 15%;
-}
-
-.days{
-    width: 8%;
+#scheduleListContainer table tr td button{
+    margin: 0 10px;
+    background-color: transparent;
 }
 
 .hint{
-    width: 70%;
-    overflow: auto; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#loding{
-    text-align: center;
-    margin: 200px auto;
+#hint-left-div{
+    margin: 0 auto;
+    min-width: 100px;
+    max-width: 500px;
+    overflow: auto;
+}
+
+.toggle-btn{
+    font-size: 1.3em;
+    display: flex;
+    color: black;
+}
+
+.time, .days{
+    width: 85px;
+}
+
+.delete-btn{
+    border: 1.5px solid #ff0000;
+    color: red;
+    padding: 5px;
+}
+
+#hint-right-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+#title{
+    background-color: rgba(0, 0 ,0 ,0.5);
 }

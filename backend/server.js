@@ -31,7 +31,6 @@ app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
 app.use('/schedule', require(path.join(__dirname, 'src', 'routers', 'schedule.js')))
-app.use('*', require(path.join(__dirname, 'src', 'routers', 'error.js')))
 
 app.use(errorHandler) //error-handler.js middleware
 
