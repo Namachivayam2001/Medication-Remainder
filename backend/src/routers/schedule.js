@@ -7,23 +7,43 @@ const deleteRecord = require('../db/delete-record')
 
 const tabel_name = "_schedules";
 
-router.post('/form', (req) => {
-    const {time, days, hint, notification} = req.body;
-    schedule(tabel_name, {time, days, hint, notification});
+router.post('/form', async (req, res) => {
+    try{
+        const {time, days, hint, notification} = req.body;
+        await schedule(tabel_name, {time, days, hint, notification});
+        res.status(200).send('data inserted successfully');
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+    }    
 })
 
-router.get('/data', (req, res) => {
-    fetchData(tabel_name, res);
+router.get('/data', async (req, res) => {
+    try{
+        const data = await fetchData(tabel_name);
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json({error: 'Internal Server Error'});
+    } 
 })
 
-router.put('/data/:itemId', (req) => {
-    const itemId = parseInt(req.params.itemId, 10);
-    updateNotification(tabel_name, itemId);
+router.put('/data/:itemId', async (req, res) => {
+    try{
+        const itemId = parseInt(req.params.itemId, 10);
+        await updateNotification(tabel_name, itemId);
+        res.status(200).send('Notification Updated successfully');
+    } catch (error) {
+        res.status(500).json({error: 'Internal Server Error'});
+    }  
 });
 
-router.delete('/data/:itemId', (req) => {
-    const itemId = parseInt(req.params.itemId, 10);
-    deleteRecord(tabel_name, itemId);
+router.delete('/data/:itemId', async (req, res) => {
+    try{
+        const itemId = parseInt(req.params.itemId, 10);
+        await deleteRecord(tabel_name, itemId);
+        res.status(200).send('Record Deleted Successfully');
+    }  catch (error) {
+        res.status(500).json({error: 'Internal Server Error'});
+    }
 });
 
 module.exports = router;

@@ -12,6 +12,5 @@ module.exports = async (table_name, item_id, days) => {
         console.log('days updated successfully')
     } catch (error) {
         console.error('Error updating days:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
     }
 };

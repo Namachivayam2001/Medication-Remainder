@@ -12,6 +12,5 @@ module.exports = async (table_name, item_id) => {
         console.log('notification updated successfully')
     } catch (error) {
         console.error('Error updating data:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
     }
 };

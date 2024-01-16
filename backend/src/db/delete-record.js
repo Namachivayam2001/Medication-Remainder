@@ -11,6 +11,5 @@ module.exports = async (table_name, item_id) => {
         console.log('data deleted successfully');
     } catch (error) {
         console.error('Error delete data:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
     }
 };
