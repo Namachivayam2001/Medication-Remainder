@@ -10,8 +10,11 @@ const tabel_name = "_schedules";
 router.post('/form', async (req, res) => {
     try{
         const {time, days, hint, notification} = req.body;
-        await schedule(tabel_name, {time, days, hint, notification});
-        res.status(200).send('data inserted successfully');
+
+        await schedule(tabel_name, {time, days, hint, notification})
+        ? res.status(200).json({inserted: true})
+        : res.status(200).json({inserted: false})
+        
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
     }    

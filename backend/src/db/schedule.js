@@ -1,14 +1,21 @@
-const path = require('path');
-const createTableIfNotExists = require(path.join(__dirname, 'create-tabel.js'));
-const insertData = require(path.join(__dirname, 'insert-record.js'));
+const createTableIfNotExists = require('./create-tabel.js');
+const insertData = require('./insert-record.js');
+const isRepeat = require('./check-repeat-data.js')
 
 module.exports = async (tabel_name, data) => {
     try {
         const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, time TIME, days INT, hint VARCHAR(255), notification BOOLEAN';
         const connection = await createTableIfNotExists(tabel_name, tableDefinition);
-        await insertData(tabel_name, data, connection);
-        console.log('notification scheduled succesfully')
-    } catch (error) {
-        console.error('Error schedule remainder:', error);
+        const scheduleExist = await isRepeat(tabel_name, data);
+        if(scheduleExist){
+            return false;
+        } else {
+            await insertData(tabel_name, data, connection);
+            console.log('Data inserted successfully');
+            return true;
+        }
+    } catch (err) {
+        console.error(err);
+        return false;
     }
 };

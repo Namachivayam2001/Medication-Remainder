@@ -81,7 +81,7 @@ function ScheduleList() {
                     <tr id="title">
                         <th className="time-head">Time</th>
                         <th className="days-head">Days</th>
-                        <th className="hint-head">Hint</th>
+                        <th className="hint-head">Hint.............................</th>
                     </tr>
                     {data.map((item) => (
                         <tr 

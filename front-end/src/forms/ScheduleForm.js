@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './scheduleForm.css';
 import axios from 'axios';
 import Header from '../home-page/Header';
+import { useNavigate } from 'react-router-dom';
 
 function ScheduleForm() {
+    const navigate = useNavigate();
     const [days, setDays] = useState('');  // Add this line
     const [hint, setHint] = useState(''); 
     const [daysError, setDaysError] = useState('');
@@ -18,10 +20,17 @@ function ScheduleForm() {
     /* handle form submition for post the data to server */
     const submit = async(e) => {
         try {
-            await axios.post('http://localhost:3030/schedule/form', data);
-            alert('form submited successfully')
+            e.preventDefault();
+            const scheduleInserted = await axios.post('http://localhost:3030/schedule/form', data);
+            if(scheduleInserted.data.inserted ){
+                alert('form submited successfully')
+            } else {
+                alert('Schedule already exist, please Schedule a new one')
+            }
         } catch (error) {
             console.error('Error posting data:', error);
+        } finally {           
+            navigate('/schedule/data');
         }
     }
 
@@ -50,6 +59,7 @@ function ScheduleForm() {
         <Header />
         <form 
             id="form" 
+            method="POST"
             onSubmit={submit}
         >
             <h1 className="form-items">schedule</h1>
