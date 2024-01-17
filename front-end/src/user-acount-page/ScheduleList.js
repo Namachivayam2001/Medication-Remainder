@@ -4,10 +4,11 @@ import axios from 'axios';
 import Header from '../home-page/Header';
 import './scheduleList.css'
 
-function ScheduleList() {
+function ScheduleList() {    
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const tableName = data.length <= 6 ? 'small-table' : 'large-table';
 
     // Helper function to convert 24-hour time format to 12-hour time format
     const convertTo12HourFormat = (time24) => {
@@ -63,10 +64,10 @@ function ScheduleList() {
         try{
             const updatedData = data.filter((item) => 
                 item.id !== itemId && item
-        );
+            );
             setData(updatedData);
             await axios.delete(`http://localhost:3030/schedule/data/${itemId}`);
-            console.log('data deleted')
+            alert('scheduel deleted successfully')
         } catch (error) {
             console.error('Error delete data: ', error)
         }
@@ -75,37 +76,46 @@ function ScheduleList() {
     return (
         <>
             <Header />
-            <div id="scheduleListContainer">  
+            <div 
+                id="scheduleListContainer"
+                className={tableName}
+            >  
                 <h2>Your Schedule List</h2>
-                <table className="custom-list">
-                    <tr id="title">
-                        <th className="time-head">Time</th>
-                        <th className="days-head">Days</th>
-                        <th className="hint-head">Hint.............................</th>
-                    </tr>
+                <ul className="custom-list">
+                    <li id="title">
+                        <p className="time-head">Time</p>
+                        <p className="days-head">Days</p>
+                        <p className="hint-head">Hint</p>
+                    </li>
                     {data.map((item) => (
-                        <tr 
+                        <li 
                             key={item.id} 
+                            className="list-items"
                         >
-                            <>
-                                <td className="time">{item.time}</td>
-                                <td className="days">{item.days}</td>
-                                <td className="hint">
-                                    <div id="hint-left-div">
-                                        {item.hint}
-                                    </div>
-                                    <div id="hint-right-div">
-                                        <button className="toggle-btn" onClick={() => handleToggle(item.id)}>
-                                            {item.notification ? <FaToggleOn /> : <FaToggleOff />}
-                                        </button>
-                                        <button className="delete-btn" onClick={() => handleDelete(item.id)}>Delete</button>
-                                    </div>
-                                </td>
-                                
-                            </>               
-                        </tr>
+                            <p className="time">{item.time}</p>
+                            <p className="days">{item.days}</p>
+                            <p className="hint">                               
+                                <div id="hint-left-div">
+                                    {item.hint}
+                                </div>
+                                <div id="hint-right-div">
+                                    <button 
+                                        className="toggle-btn" 
+                                        onClick={() => handleToggle(item.id)}
+                                    >
+                                        {item.notification ? <FaToggleOn /> : <FaToggleOff />}
+                                    </button>
+                                    <button 
+                                        className="delete-btn" 
+                                        onClick={() => handleDelete(item.id)}
+                                    >
+                                        Delete                                    
+                                    </button>
+                                </div>
+                            </p>    
+                        </li>                        
                     ))}
-                </table>
+                </ul>
             </div>
         </>
     );

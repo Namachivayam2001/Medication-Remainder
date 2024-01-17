@@ -1,6 +1,6 @@
 #scheduleListContainer{
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-image: url('../../public/images/v870-tang-37.jpg');
 	background-size: cover;
 	background-position: center;
@@ -9,72 +9,81 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 60px;
+    gap: 10px;
 }
 
-#scheduleListContainer table{
-    width: 80%;
-    border-collapse: separate;
-    border-spacing: 0 15px;
-}
-
-#scheduleListContainer table tr{
-    border: 1px solid;
-    padding: 5px;
-    background-color: #fff;
-}
-
-#scheduleListContainer table tr td {
+.list-items, #title{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
     text-align: center;
+    margin: 15px auto;
+    padding: 10px;
+    border-radius: 10px;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.list-items {
+    transition: transform 0.3s ease-in-out; /* Add a transition for a smooth effect */
+    box-shadow: 0 0 5px #000;
+}
+  
+.list-items:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #000;
+}
+
+#title p{
     padding: 5px;
+    font-weight: bold;
+    color: #fff;
 }
 
-#scheduleListContainer table tr th {
-    padding: 15px;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
+#title{
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-#scheduleListContainer table tr td button{
-    margin: 0 10px;
+#scheduleListContainer ul li button{
+    display: flex;
+    margin: 0 5px;
+    padding: 5px;
+    align-items: center;
     background-color: transparent;
+}
+
+.toggle-btn{
+    color: #000;
+    font-size: 1.3em;
+}
+
+.delete-btn{
+    color: red;
+    border: 1.5px solid red;
 }
 
 .hint{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
+.time, .time-head{
+    width: 90px;
+}
+
+.days, .days-head{
+    width: 40px;
+}
+
+.hint-head, #hint-left-div{
+    width: 400px;
+}
 #hint-left-div{
-    margin: 0 auto;
-    min-width: 100px;
-    max-width: 500px;
-    overflow: auto;
-}
-
-.toggle-btn{
-    font-size: 1.3em;
-    display: flex;
-    color: black;
-}
-
-.time, .days{
-    width: 85px;
-}
-
-.delete-btn{
-    border: 1.5px solid #ff0000;
-    color: red;
     padding: 5px;
+    overflow: auto;
 }
 
 #hint-right-div{
     display: flex;
     flex-direction: row;
-    align-items: center
-}
-
-#title{
-    background-color: rgba(0, 0 ,0 ,0.5);
 }

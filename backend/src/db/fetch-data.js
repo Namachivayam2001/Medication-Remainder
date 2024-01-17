@@ -5,7 +5,6 @@ module.exports = async (table_name) => {
         const connection = await pool.getConnection();
         const [rows] = await connection.query(`SELECT * FROM ${table_name}`);
         connection.release();
-        console.log('data fetched successfully');
         return(rows);
     } catch (error) {
         console.error('Error fetching data:', error);

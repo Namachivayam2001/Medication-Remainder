@@ -24,6 +24,7 @@ router.get('/data', async (req, res) => {
     try{
         const data = await fetchData(tabel_name);
         res.status(200).json(data);
+        console.log('Data fetched successfully');
     } catch (error) {
         res.status(500).json({error: 'Internal Server Error'});
     } 

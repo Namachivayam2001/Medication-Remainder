@@ -5,18 +5,12 @@ module.exports = async (tableName, data) => {
         const connection = await pool.getConnection();
         const [rows] = await connection.query(`
             SELECT COUNT(*) as count FROM ${tableName} 
-            WHERE time = ? 
-            AND days = ? 
-            AND hint = ? 
-            AND notification = ?`, 
-            [data.time, data.days, data.hint, data.notification]
+            WHERE time = ?`, 
+            [data.time]
         );
         connection.release();
-        console.log(rows)
         const count = rows[0].count;
-
         console.log('Number of matching records:', count);
-
         return count > 0;
     } catch (error) {
         console.error('Error scheduling reminder:', error);

@@ -11,7 +11,6 @@ module.exports = async (tabel_name, data) => {
             return false;
         } else {
             await insertData(tabel_name, data, connection);
-            console.log('Data inserted successfully');
             return true;
         }
     } catch (err) {
