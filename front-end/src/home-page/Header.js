@@ -14,7 +14,7 @@ function Header() {
                         <Link to="/schedule/data" >ScheduleList</Link>
                     </li>
                     <li className="login-icon">
-                        Login/Signup
+                        <Link to="/login" >Login/Signup</Link>                        
                     </li>
             </ul>
       </div>

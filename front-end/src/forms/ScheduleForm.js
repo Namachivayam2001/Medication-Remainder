@@ -55,56 +55,54 @@ function ScheduleForm() {
     };
 
     return (
-      <div className="container">
+      <div className="schedule-form-container">
         <Header />
         <form 
-            id="form" 
+            className="scheduleForm" 
             method="POST"
             onSubmit={submit}
         >
-            <h1 className="form-items">schedule</h1>
-            <div className="form-items">
-                <div className="formTime">
+            <h1 className="scheduleForm-heading">schedule</h1>
+            <div className="scheduleForm-time-days-container">
+                <div className="scheduleForm-time-container">
                     <label>Time*</label>
                     <input 
                         type="time" 
-                        id="timeInput" 
+                        className="scheduleForm-time-input" 
                         name="userTime" 
                         required 
                         onChange={(e) => {setData({...data, time: e.target.value})}}
                     />    
                 </div>
-                <div className="formDays">
+                <div className="scheduleForm-days-container">
                     <label>days*</label>                    
                     <input 
                         type="number" 
                         placeholder="number of days" 
-                        id="userDays" 
-                        name="userDays" 
+                        className="scheduleForm-days-input" 
                         required 
                         value={days}
                         onChange={(e) => handleDaysChange(e)}
-                        style={{ borderColor: daysError ? 'red' : '', marginingBottom: daysError? 1: 0 }}
+                        style={{ borderColor: daysError ? 'red' : ''}}
                     />
-                    {daysError && <span id="error-message" className="error-message">{daysError}</span>}
+                    {daysError && <span className="scheduleForm-error-message">{daysError}</span>}
                 </div> 
             </div>
-            <label className="form-items" style={{ marginTop: daysError ? 0 : 18 }} >Hint*</label>
-            <input 
-                className="form-items" 
-                type="text" 
-                id="formHint" 
-                name="hint" 
-                placeholder="What you remember"
-                required 
-                value={hint}
-                onChange={(e) => handleHintChange(e)}
-                style={{ borderColor: hintError ? 'red' : ''}}
-            />
-                {hintError && <span className="error-message">{hintError}</span>}
+            <div className='scheduleForm-hint-container'>
+                <label>Hint*</label>
+                <input 
+                    className="scheduleForm-hint-input" 
+                    type="text" 
+                    placeholder="What you remember"
+                    required 
+                    value={hint}
+                    onChange={(e) => handleHintChange(e)}
+                    style={{ borderColor: hintError ? 'red' : ''}}
+                />
+                    {hintError && <span className="scheduleForm-error-message">{hintError}</span>}
+            </div>
             <button 
-                className="form-items" 
-                id="submit" 
+                className="scheduleForm-submit-button" 
                 type="submit"
             >
                 Submit

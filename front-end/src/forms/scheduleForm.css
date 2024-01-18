@@ -1,4 +1,4 @@
-.container {
+.schedule-form-container {
     background-image: url('../../public/images/v870-tang-37.jpg');
 	background-size: cover;
 	background-position: center;
@@ -12,87 +12,85 @@
     background-color: #f2f2f2;
 }
 
-input{
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.scheduleForm-heading{
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
 }
 
-.form-items{
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    flex-basis: 50%;
-    flex-wrap: wrap;
-}
-
-form{
-    max-width: 400px;
-    border-radius: 20px;
+.scheduleForm{
     padding: 20px;
+    width: 400px;
     display: flex;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 10px #000;
+    border-radius: 20px;
+    gap: 20px;
+    background-color: rgb(255, 255, 255, 0.5);
+    box-shadow: 0 0 5px #000;
 }
 
-h1{
-    margin: 0 auto;
-    padding: 10px;
-    margin-bottom: 5px;;
+.scheduleForm-time-input,
+.scheduleForm-days-input,
+.scheduleForm-hint-input{
+    width: 100%;
+    font-size: 1.1em;
+    padding: 6px;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid black;
 }
 
-label{
-    font-weight: bolder;
-    margin-top: 20px;
+.scheduleForm-time-input{
+    padding: 5.5px;
 }
 
-button{
+.scheduleForm{
+    padding: 20px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.scheduleForm-time-container,
+.scheduleForm-days-container{
+    width: 50%;
+}
+
+.scheduleForm-time-days-container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.scheduleForm-submit-button{
+    font-size: 1.1em;
+    width: fit-content;
     background-color: #4caf50;
     color: #fff;
-    padding: 10px;
+    padding: 7px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    width: fit-content;
 }
 
-button:hover {
+.scheduleForm-submit-button:hover{
     background-color: #45a049;
 }
 
-input:focus{
-    outline: none;
-    border-color: blue;
-}
-
-input[type="number"], input[type="text"]{
-    font-size: 17px;
-}
-
-.error-message{
-    font-size: small;
-    color: red;
-    margin-top: -8px;
+.scheduleForm label{
+    font-weight: bold;
     margin-left: 5px;
-    background-color: #fff;
-    width: fit-content;
-    margin-bottom: -7px;
 }
 
-#error-message{
-    position: relative;
-    top: -9px;
+.scheduleForm input:focus{
+    outline: none;
+    border: 1px solid blue;
 }
 
-#hint-container{
-    padding-top: 20px;
-}
-
-#formTime{
-    width: 50%;
+.scheduleForm-error-message{
+    color: red;
+    font-size: small;
+    margin-left: 5px;
 }

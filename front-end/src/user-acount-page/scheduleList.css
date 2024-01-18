@@ -1,6 +1,5 @@
 #scheduleListContainer{
     width: 100%;
-    height: 100vh;
     background-image: url('../../public/images/v870-tang-37.jpg');
 	background-size: cover;
 	background-position: center;
@@ -10,6 +9,14 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+}
+
+.small-table{
+    height: 100vh;
+}
+
+.large-table{
+    height: 100%;
 }
 
 .list-items, #title{
@@ -41,8 +48,11 @@
 }
 
 #title{
-    padding: 12px;
-    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 5px rgb(0, 0, 0);
+    font-size: 1.1em;
+    border: 1px solid #000;
 }
 
 #scheduleListContainer ul li button{
@@ -56,11 +66,16 @@
 .toggle-btn{
     color: #000;
     font-size: 1.3em;
+    border-style: none;
 }
 
 .delete-btn{
     color: red;
     border: 1.5px solid red;
+}
+
+.delete-btn:hover{ 
+    box-shadow:  0 0 5px red;
 }
 
 .hint{
