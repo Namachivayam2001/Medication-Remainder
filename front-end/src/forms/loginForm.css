@@ -71,3 +71,7 @@
     text-align: center;
     text-decoration: none;
 }
+
+.login-submit-button:hover{
+    background-color: #45a049;
+}
