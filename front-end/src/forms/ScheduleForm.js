@@ -30,7 +30,7 @@ function ScheduleForm() {
                         name="time" 
                         value={values.time}
                         onChange={(e) => handleChange(e)}
-                        style={{ borderColor: errors.time ? 'red' : 'blue'}}
+                        style={{ borderColor: errors.time ? 'red' : ''}}
                     />   
                     {errors.time && <span className='scheduleForm-error-message'>{errors.time}</span>} 
                 </div>
@@ -43,7 +43,7 @@ function ScheduleForm() {
                         name='days'
                         value={values.days}
                         onChange={(e) => handleChange(e)}
-                        style={{ borderColor: errors.days ? 'red' : 'blue'}}
+                        style={{ borderColor: errors.days ? 'red' : ''}}
                     />
                     {errors.days && <span className='scheduleForm-error-message'>{errors.days}</span>} 
                 </div> 
@@ -57,7 +57,7 @@ function ScheduleForm() {
                     name='hint'
                     value={values.hint}
                     onChange={(e) => handleChange(e)}
-                    style={{ borderColor: errors.hint ? 'red' : 'blue'}}
+                    style={{ borderColor: errors.hint ? 'red' : ''}}
                 />
                 {errors.hint && <span className='scheduleForm-error-message'>{errors.hint}</span>} 
             </div>

@@ -31,10 +31,12 @@ export default (validate) => {
             setErrors(() => validate(values));
             if (Object.keys(validate(values)).length === 0) {
                 const scheduleInserted = await axios.post('http://localhost:3030/schedule/form', values);
-                scheduleInserted.data.inserted
-                    ? alert('form submited successfully')
-                    : alert('Schedule already exist, please Schedule a new one')
-                navigate('/schedule/data');   
+                if(scheduleInserted.data.inserted){
+                    alert('form submited successfully');
+                    navigate('/schedule/data'); 
+                } else {
+                    alert('Schedule already exist, please Schedule a new one');
+                }            
             }                 
         } catch (error) {
             console.error('Error posting data:', error);
