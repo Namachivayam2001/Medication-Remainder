@@ -28,7 +28,7 @@
 
 .login-form input{
     width: 100%;
-    font-size: 1.1em;
+    font-size: 1.2em;
     padding: 6px;
     border-radius: 5px;
     margin-top: 5px;
@@ -47,7 +47,7 @@
 
 .login-submit-button{
     width: 100%;
-    font-size: 1.1em;
+    font-size: 1.2em;
     padding: 7px;
     background-color: #4caf50;
     color: #fff;

@@ -5,8 +5,11 @@ import Header from '../home-page/Header';
 
 function RegistorForm() {
     const [firstName, setFirstName] = useState('');
-    const [lastName, setLasttName] = useState('');
+    const [firstNameError, setFirstNameError] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [lastNameError, setLastNameError] = useState('');
     const [userId, setUserId] = useState('');
+    const [userIdError, setUserIdError] = useState('');
     const [dob, setDOB] = useState('');
     const [email, setEmail] = useState('');
     const [guardianEmail, setGuardianEmail] = useState('');
@@ -14,23 +17,56 @@ function RegistorForm() {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleFirstName = (e) => {
-        const first_name = e.target.value;
-        setFirstName(first_name);
+        const first_name = e.target.value; 
+        const firstNameRegex = /^[A-Za-z]+$/;
+        if(firstNameRegex.test(first_name)){
+            setFirstNameError('');
+            setFirstName(first_name);
+        }else{
+            setFirstNameError('Use only alphabets');
+        }
+        
     }
 
     const handleLastName = (e) => {
         const last_name = e.target.value;
-        setLasttName(last_name);
+        const lastNameRegex = /^[A-Za-z]+$/;
+        if(lastNameRegex.test(last_name)){
+            setLastNameError('');
+            setLastName(last_name);
+        }else{
+            setLastNameError('Use only alphabets');
+        }
     }
 
     const handleUserId = (e) => {
         const userId = e.target.value;
-        setUserId(userId);
+        const userIdRegex = /^[A-Za-z][A-Za-z0-9]{7,}$/;
+        if(userIdRegex.test(userId)){
+            setUserIdError('');
+            setUserId(userId);
+        }else{
+            setUserIdError('use minimu 7 char or userId already exist');
+        }
     }
 
     const handleDOB = (e) => {
-        const dob = e.target.value;
-        setDOB(dob);
+        const dob_value = e.target.value;
+        const dob = new Date(dob_value);
+        const currentDate = new Date();
+        const minDate = new Date(
+            currentDate.getFullYear() - 100, 
+            currentDate.getMonth(), 
+            currentDate.getDate()
+        );
+        const maxDate = new Date(
+            currentDate.getFullYear() - 16, 
+            currentDate.getMonth(), 
+            currentDate.getDate()
+        );
+        if (dob >= minDate && dob <= maxDate) {
+            setDOB(dob_value);
+        }
     }
 
     const handleEmail = (e) => {
@@ -70,8 +106,10 @@ function RegistorForm() {
                             value={firstName}
                             placeholder='Enter First Name'
                             onChange={(e) => handleFirstName(e)}
+                            style={{borderColor: firstNameError ? 'red' : ''}}
                             required
                         />
+                        {firstNameError && <span className='registorForm-error-message'>{firstNameError}</span>}
                     </div>
                     <div className='registorForm-last-name-container'>
                         <label className='registorForm-last-name-label'>Last Name*</label>
@@ -81,8 +119,10 @@ function RegistorForm() {
                             value={lastName}
                             placeholder='Enter Last Name'
                             onChange={(e) => handleLastName(e)}
+                            style={{borderColor: lastNameError ? 'red' : ''}}
                             required
                         />
+                        {lastNameError && <span className='registorForm-error-message'>{lastNameError}</span>}
                     </div>
                 </div>
                 <div className='registorForm-user-id-dob-container'>
@@ -94,8 +134,10 @@ function RegistorForm() {
                             value={userId}
                             placeholder='Enter User Id'
                             onChange={(e) => handleUserId(e)}
+                            style={{borderColor: userIdError ? 'red' : ''}}
                             required
                         />
+                        {userIdError && <span className='registorForm-error-message'>{userIdError}</span>}
                     </div>
                     <div className='registorForm-dob-container'>
                         <label className='registorForm-dob-label'>DOB*</label>
@@ -120,12 +162,12 @@ function RegistorForm() {
                     />
                 </div>
                 <div className='registorForm-guardian-email-container'>
-                    <label className='registorForm-guardian-email-label'>Confirm Email*</label>
+                    <label className='registorForm-guardian-email-label'>Guardian Email*</label>
                     <input 
                         className='registorForm-guardian-email-input'
                         type='email'
                         value={guardianEmail}
-                        placeholder='Enter Confirm Email'
+                        placeholder='Enter Guardian Email'
                         onChange={(e) => handleGuardianEmail(e)}
                         required
                     />
@@ -146,7 +188,7 @@ function RegistorForm() {
                     <input 
                         className='registorForm-confirm-password-input'
                         type='password'
-                        value={password}
+                        value={confirmPassword}
                         placeholder='Enter Confirm Password'
                         onChange={(e) => handleConfirmPassword(e)}
                         required

@@ -68,6 +68,7 @@
 
 .registorForm label{
     font-weight: bold;
+    margin-left: 5px;
 }
 
 .registorForm-submit-button:hover{
@@ -82,5 +83,11 @@
 .registorForm a {
     text-align: center;
     text-decoration: none;
-    margin-top: -20px;
+    margin-top: -30px;
+}
+
+.registorForm-error-message{
+    color: red;
+    font-size: small;
+    margin-left: 5px;
 }
