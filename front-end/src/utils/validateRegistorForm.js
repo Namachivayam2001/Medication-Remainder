@@ -67,10 +67,13 @@ export default (values) => {
             && (errors.email = 'invalid Email Address')
 
     /* validate guardian email address */
-    ! guardian_email_value
-        ? errors.guardian_email = 'Email Address Required'
-        : !emailRegex.test(guardian_email_value)
-            && (errors.guardian_email = 'invalid Email Address')
+    if(!guardian_email_value){
+        errors.guardian_email = 'Email Address Required';
+    } else if(!emailRegex.test(guardian_email_value)){
+        errors.guardian_email = 'invalid Email Address';
+    } else if(guardian_email_value === email_value){
+        errors.guardian_email = 'Email  and Guardian email must be different';
+    }
 
     /* validate password */
     ! password_value

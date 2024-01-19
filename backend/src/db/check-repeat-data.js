@@ -3,11 +3,20 @@ const pool = require('./connection.js');
 module.exports = async (tableName, data) => {
     try {
         const connection = await pool.getConnection();
-        const [rows] = await connection.query(`
-            SELECT COUNT(*) as count FROM ${tableName} 
-            WHERE time = ?`, 
-            [data.time]
-        );
+        if(tableName === '_schedules'){
+            var [rows] = await connection.query(`
+                SELECT COUNT(*) as count FROM ${tableName} 
+                WHERE time = ?`, 
+                [data.time]
+            );
+        } else {
+            var [rows] = await connection.query(`
+                SELECT COUNT(*) as count FROM ${tableName} 
+                WHERE user_id = ? OR email = ?`, 
+                [data.user_id, data.email]
+            );
+        }
+       
         connection.release();
         const count = rows[0].count;
         console.log('Number of matching records:', count);

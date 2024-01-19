@@ -1,35 +1,12 @@
-import React, { useState } from 'react';
 import './loginForm.css';
 import Header from '../home-page/Header';
 import { Link } from 'react-router-dom';
+import useForm from '../hooks/useLoginForm';
+import validate from '../utils/validateLoginForm';
 
-function LoginForm() {   
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
+function LoginForm() {  
 
-    const handleEmailChange = (e) => {
-        const email = e.target.value;
-        setEmail(email);
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        setEmailError(
-            !emailRegex.test(email) 
-            ? 'Invalid email' 
-            : ''
-        );
-    }
-
-    const handlePasswordChange = (e) => {
-        const password = e.target.value;
-        setPassword(password);
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        setPasswordError(
-            !passwordRegex.test(password)
-            ? 'use min 8 char and combination of 1-@-A-a'
-            : ''
-        );
-    }
+    const {values, errors, handleChange} = useForm(validate);
 
     return (
         <div className='login-container'>
@@ -40,30 +17,49 @@ function LoginForm() {
             >
                 <h1 className='login-heading'>Login</h1>
                 <div className='login-email-container'>
-                    <label className='login-email-label'>Email*</label>
+                    <label 
+                        className='login-email-label'
+                        htmlFor='email'
+                    >
+                        Email*
+                    </label>
                     <input 
                         type='email'
-                        value={email}
+                        name='email'
+                        value={values.email}
                         placeholder='Enter Email'
                         className='login-email-input'
-                        onChange={(e) => handleEmailChange(e)}
-                        style={{borderColor: emailError && 'red'}}
-                        required
+                        onChange={(e) => handleChange(e)}
+                        style={{
+                            borderColor: errors.email && 'red'
+                        }}
                     />
-                    {emailError && <span className='login-error-message'>{emailError}</span>}
+                    {
+                        errors.email 
+                            && <span className='login-error-message'>{errors.email}</span>
+                    }
                 </div>
                 <div className='login-password-container'>
-                    <lable className='login-password-label'>Password*</lable>
+                    <lable 
+                        className='login-password-label'
+                        htmlFor='password'
+                    >
+                        Password*
+                    </lable>
                     <input
                         type='password'
-                        value={password}
+                        name='password'
+                        value={values.password}
                         placeholder='Enter Password'
                         className='login-password-input'
-                        onChange={(e) => handlePasswordChange(e)}
-                        style={{borderColor: passwordError && 'red'}}
-                        required
+                        onChange={(e) => handleChange(e)}
+                        style={{
+                            borderColor: errors.password && 'red'
+                        }}
                     />
-                    {passwordError && <span className='login-error-message'>{passwordError}</span>}
+                    {errors.password 
+                        && <span className='login-error-message'>{errors.email}</span>
+                    }
                 </div>
                 <button
                     type='submit'

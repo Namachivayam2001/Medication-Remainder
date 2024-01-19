@@ -25,8 +25,8 @@
     text-align: center;
     padding: 10px;
     font-size: 60px;
-    color: #62c2c4;
-    text-shadow: 5px 5px 5px rgb(0, 0, 0, 0.8);
+    color: #fff;
+    text-shadow: 5px 5px 5px #000;
 }
 
 .registorForm-name-container,

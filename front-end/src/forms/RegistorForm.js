@@ -6,7 +6,12 @@ import validate from '../utils/validateRegistorForm'
 
 function RegistorForm() {
 
-    const {handleChange, values, handleSubmit, errors} = useForm(validate);
+    const {
+        handleChange, 
+        values, 
+        handleSubmit, 
+        errors
+    } = useForm(validate);
 
     return (
         <div className='registorForm-container'>
