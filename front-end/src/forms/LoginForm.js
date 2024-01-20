@@ -2,11 +2,10 @@ import './loginForm.css';
 import Header from '../home-page/Header';
 import { Link } from 'react-router-dom';
 import useForm from '../hooks/useLoginForm';
-import validate from '../utils/validateLoginForm';
 
 function LoginForm() {  
 
-    const {values, errors, handleChange} = useForm(validate);
+    const {values, errors, handleChange, handleSubmit} = useForm();
 
     return (
         <div className='login-container'>
@@ -14,6 +13,7 @@ function LoginForm() {
             <form
                 method='POST'
                 className='login-form'
+                onSubmit={(e) => handleSubmit(e)}
             >
                 <h1 className='login-heading'>Login</h1>
                 <div className='login-email-container'>
@@ -24,7 +24,7 @@ function LoginForm() {
                         Email*
                     </label>
                     <input 
-                        type='email'
+                        type='text'
                         name='email'
                         value={values.email}
                         placeholder='Enter Email'

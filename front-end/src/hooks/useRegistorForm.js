@@ -1,8 +1,9 @@
 import {useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import validate from '../utils/validateRegistorForm'
 
-export default (validate) => {
+export default () => {
 
     const navigate = useNavigate();
 

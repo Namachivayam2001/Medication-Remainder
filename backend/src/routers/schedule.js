@@ -6,14 +6,15 @@ const updateNotification = require('../db/update-notification')
 const deleteRecord = require('../db/delete-record')
 
 const tabel_name = "_schedules";
+const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, time TIME, days INT, hint VARCHAR(255), notification BOOLEAN';
 
 router.post('/form', async (req, res) => {
     try{
-        const {time, days, hint, notification} = req.body;
+        const {time, days, hint,  notification} = req.body;
 
-        await schedule(tabel_name, {time, days, hint, notification})
+        await schedule(tabel_name, tableDefinition, {time, days, hint, notification})
         ? res.status(200).json({inserted: true})
-        : res.status(200).json({inserted: false})
+        : res.status(401).json({inserted: false})
         
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });

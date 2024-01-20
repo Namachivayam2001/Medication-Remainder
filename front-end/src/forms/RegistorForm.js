@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import './registorForm.css';
 import Header from '../home-page/Header';
 import useForm from '../hooks/useRegistorForm';
-import validate from '../utils/validateRegistorForm'
 
 function RegistorForm() {
 
@@ -11,7 +10,7 @@ function RegistorForm() {
         values, 
         handleSubmit, 
         errors
-    } = useForm(validate);
+    } = useForm();
 
     return (
         <div className='registorForm-container'>
@@ -149,7 +148,7 @@ function RegistorForm() {
                     </label>
                     <input 
                         className='registorForm-email-input'
-                        type='email'
+                        type='text'
                         name='email'
                         value={values.email}
                         placeholder='Enter Email'
@@ -172,7 +171,7 @@ function RegistorForm() {
                     </label>
                     <input 
                         className='registorForm-guardian-email-input'
-                        type='email'
+                        type='text'
                         name='guardian_email'
                         value={values.guardian_email}
                         placeholder='Enter Guardian Email'

@@ -1,7 +1,6 @@
 import './scheduleForm.css';
 import Header from '../home-page/Header';
 import useForm from '../hooks/useScheduleForm';
-import validate from '../utils/validateScheduleForm';
 
 function ScheduleForm() {
 
@@ -10,7 +9,7 @@ function ScheduleForm() {
         values, 
         handleSubmit, 
         errors
-    } = useForm(validate);
+    } = useForm();
 
     return (
       <div className="schedule-form-container">
