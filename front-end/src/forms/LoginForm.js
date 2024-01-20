@@ -58,7 +58,7 @@ function LoginForm() {
                         }}
                     />
                     {errors.password 
-                        && <span className='login-error-message'>{errors.email}</span>
+                        && <span className='login-error-message'>{errors.password}</span>
                     }
                 </div>
                 <button

@@ -2,9 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { FaToggleOn, FaToggleOff } from 'react-icons/fa6';
 import axios from 'axios';
 import Header from '../home-page/Header';
-import './scheduleList.css'
+import './scheduleList.css';
+import { useContext } from 'react';
+import userContext from '../userContext';
 
 function ScheduleList() {    
+    
+    const user_data = useContext(userContext);
+    console.log(user_data)
+
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
