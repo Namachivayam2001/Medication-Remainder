@@ -8,8 +8,6 @@ import userContext from '../userContext';
 
 function ScheduleList() {    
     
-    const user_data = useContext(userContext);
-    console.log(user_data)
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -26,6 +24,10 @@ function ScheduleList() {
     
     /* Fetching the data from server when it renders */
     useEffect(() => {
+
+        /* const [user, setUser] = useContext(userContext);
+        console.log(user); */
+
         const fetchData = async () => {
             console.log('fetch')
             try {

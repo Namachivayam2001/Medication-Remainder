@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const schedule = require('../db/schedule')
+const schedule = require('../db/registor-schedule')
 const isUserExist = require('../db/check-login-data')
 const fetchData = require('../db/fetch-data-login')
 
@@ -20,9 +20,18 @@ router.post('/registor', async (req, res) => {
             password,
         } = req.body;
 
-        await schedule(tabel_name, tableDefinition, {first_name, last_name, user_id, dob, mobile_number, email, guardian_email, password})
-        ? res.status(200).json({inserted: true})
-        : res.status(401).json({inserted: false})
+        const response = await schedule(tabel_name, tableDefinition, {
+            first_name,
+            last_name,
+            user_id,
+            dob,
+            mobile_number,
+            email,
+            guardian_email,
+            password,
+        });
+        res.status(200).json(response);
+        console.log(response);
         
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });

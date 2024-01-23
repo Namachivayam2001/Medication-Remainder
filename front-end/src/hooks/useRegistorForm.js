@@ -36,13 +36,16 @@ export default () => {
             e.preventDefault();
             setErrors(() => validate(values));
             if (Object.keys(validate(values)).length === 0) {
-                const userInserted = await axios.post('http://localhost:3030/users/registor', values);
-                if(userInserted.data.inserted){
+                const response = await axios.post('http://localhost:3030/users/registor', values);
+                console.log(response);
+                if(response.data.email_repeat){
+                    setErrors((prevErrors) => ({ ...prevErrors, email: 'Email already exist' }));
+                } else if(response.data.user_id_repeat){
+                    setErrors((prevErrors) => ({ ...prevErrors, user_id: 'user_id already exist' }));
+                } else {
                     alert('form submited successfully');
                     navigate('/schedule/data'); 
-                } else {
-                    alert('userID or email are already exist, Registration failed!');
-                }            
+                }           
             } 
         } catch (error) {
             console.error('Error posting data:', error);

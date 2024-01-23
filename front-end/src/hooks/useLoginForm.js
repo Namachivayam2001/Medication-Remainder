@@ -39,7 +39,7 @@ export default () => {
                 } else if(response.data.match_email){
                     setErrors((prevErrors) => ({ ...prevErrors, password: 'Password incorrect' }));
                 }else{
-                    setErrors((prevErrors) => ({ ...prevErrors, email: 'Email incorrect', password: 'Password incorrect' }));
+                    setErrors((prevErrors) => ({ ...prevErrors, email: 'incorrect Email and password please registor', password: 'incorrect Email and password please registor' }));
                 }
             }
         } catch (error) {

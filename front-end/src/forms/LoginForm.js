@@ -5,7 +5,12 @@ import useForm from '../hooks/useLoginForm';
 
 function LoginForm() {  
 
-    const {values, errors, handleChange, handleSubmit} = useForm();
+    const {
+        values, 
+        errors, 
+        handleChange, 
+        handleSubmit
+    } = useForm();
 
     return (
         <div className='login-container'>
