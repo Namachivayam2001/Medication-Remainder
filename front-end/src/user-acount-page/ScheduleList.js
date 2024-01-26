@@ -1,50 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { FaToggleOn, FaToggleOff } from 'react-icons/fa6';
-import axios from 'axios';
 import Header from '../home-page/Header';
 import './scheduleList.css';
-import { useContext } from 'react';
-import userContext from '../userContext';
+import useList from '../hooks/useScheduleList';
 
-function ScheduleList() {    
+function ScheduleList() {   
     
+    const {
+        handleToggle,
+        handleDelete,
+        fetchData,
+        data,
+        loading,
+        error,
+        user
+    } = useList();
 
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const tableName = data.length <= 6 ? 'small-table' : 'large-table';
 
-    // Helper function to convert 24-hour time format to 12-hour time format
-    const convertTo12HourFormat = (time24) => {
-        const [hours, minutes] = time24.split(':');
-        const suffix = hours >= 12 ? 'PM' : 'AM';
-        const formattedHours = hours % 12 || 12;
-        return `${formattedHours}:${minutes} ${suffix}`;
-    };
-    
     /* Fetching the data from server when it renders */
     useEffect(() => {
-
-        /* const [user, setUser] = useContext(userContext);
-        console.log(user); */
-
-        const fetchData = async () => {
-            console.log('fetch')
-            try {
-                const response = await axios.get('http://localhost:3030/schedule/data');
-                const formattedData = response.data.map(item => ({
-                    ...item,
-                    time: convertTo12HourFormat(item.time),
-                }));
-                setData(formattedData);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                setError('Error fetching data. Please try again later.');
-            }
-        };
         fetchData();
-    }, []);
+    }, [user]);
 
     if (loading) {
         return <p id ="loding">Loading...</p>;
@@ -54,33 +31,7 @@ function ScheduleList() {
         return <p>{error}</p>;
     }
 
-    /* update the notification when it toggle */
-    const handleToggle = async (itemId) => {
-        try {
-            const updatedData = data.map((item) => 
-                item.id === itemId ? { ...item, notification: !item.notification } : item
-            );
-            setData(updatedData);
-            await axios.put(`http://localhost:3030/schedule/data/${itemId}`);
-        } catch (error) {
-            console.error('Error updating data:', error);
-        }
-    };
-
-    /* Delete the records from ScheduleList */
-    const handleDelete = async (itemId) => {
-        try{
-            const updatedData = data.filter((item) => 
-                item.id !== itemId && item
-            );
-            setData(updatedData);
-            await axios.delete(`http://localhost:3030/schedule/data/${itemId}`);
-            alert('scheduel deleted successfully')
-        } catch (error) {
-            console.error('Error delete data: ', error)
-        }
-    }
-
+    
     return (
         <>
             <Header />

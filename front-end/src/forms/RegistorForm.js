@@ -21,122 +21,76 @@ function RegistorForm() {
                 onSubmit={(e) => handleSubmit(e)}
             >
                 <h1 className='registorForm-heading'>Registor</h1>
-                <div className='registorForm-name-container'>
-                    <div className='registorForm-first-name-container'>
-                        <label 
-                            className='registorForm-first-name-label'
-                            htmlFor='first_name'
-                        >
-                            First Name*
-                        </label>
-                        <input 
-                            className='registorForm-first-name-input'
-                            type='text'
-                            value={values.first_name}
-                            name='first_name'
-                            placeholder='Enter First Name'
-                            onChange={(e) => handleChange(e)}
-                            style={{
-                                borderColor: errors.first_name ? 'red' : ''
-                            }}
-                        />
-                        {
-                            errors.first_name
-                                && <span className='registorForm-error-message'>{errors.first_name}</span>                        
-                        }
-                    </div>
-                    <div className='registorForm-last-name-container'>
-                        <label 
-                            className='registorForm-last-name-label'
-                            htmlFor='last_name'
-                        >
-                            Last Name*
-                        </label>
-                        <input 
-                            className='registorForm-last-name-input'
-                            type='text'
-                            name='last_name'
-                            value={values.last_name}
-                            placeholder='Enter Last Name'
-                            onChange={(e) => handleChange(e)}
-                            style={{
-                                borderColor: errors.last_name ? 'red' : ''
-                            }}
-                        />
-                        {
-                            errors.last_name
-                                && <span className='registorForm-error-message'>{errors.last_name}</span>                        
-                        }
-                    </div>
-                </div>
-                <div className='registorForm-user-id-dob-container'>
-                    <div className='registorForm-user-id-container'>
-                        <label 
-                            className='registorForm-user-id-label'
-                            htmlFor='user_id'
-                        >
-                            User ID*
-                        </label>
-                        <input 
-                            className='registorForm-user-id-input'
-                            type='text'
-                            name='user_id'
-                            value={values.user_id}
-                            placeholder='Enter User Id'
-                            onChange={(e) => handleChange(e)}
-                            style={{
-                                borderColor: errors.user_id ? 'red' : ''
-                            }}
-                        />
-                        {
-                            errors.user_id
-                                && <span className='registorForm-error-message'>{errors.user_id}</span>                        
-                        }
-                    </div>
-                    <div className='registorForm-dob-container'>
-                        <label 
-                            className='registorForm-dob-label'
-                            htmlFor='dob'
-                        >
-                            DOB*
-                        </label>
-                        <input 
-                            className='registorForm-dob-input'
-                            type='date'
-                            name='dob'
-                            value={values.dob}
-                            onChange={(e) => handleChange(e)}
-                            style={{
-                                borderColor: errors.dob ? 'red' : ''
-                            }}
-                        />
-                        {
-                            errors.dob
-                                && <span className='registorForm-error-message'>{errors.dob}</span>                        
-                        }
-                    </div>
-                </div>
-                <div className='registorForm-mobile-number-container'>
+                <div className='registorForm-first-name-container'>
                     <label 
-                        className='registorForm-mobile-number-label'
-                        htmlFor='mobile_number'
+                        className='registorForm-first-name-label'
+                        htmlFor='first_name'
                     >
-                        Moile Number*
+                        First Name*
                     </label>
                     <input 
-                        className='registorForm-mobile-number-input'
-                        type='tel'
-                        name='mobile_number'
-                        value={values.mobile_number}
-                        placeholder='Enter Mobile Number'
+                        className='registorForm-first-name-input'
+                        type='text'
+                        value={values.first_name}
+                        name='first_name'
+                        placeholder='Enter First Name'
                         onChange={(e) => handleChange(e)}
                         style={{
-                            borderColor: errors.mobile_number ? 'red' : ''
+                            borderColor: errors.first_name && 'red',
+                            boxShadow: errors.first_name && '0 0 5px rgba(225, 0, 0, 0.8)'
                         }}
                     />
                     {
-                        errors.mobile_number
-                            && <span className='registorForm-error-message'>{errors.mobile_number}</span>                        
+                        errors.first_name
+                            && <span className='registorForm-error-message'>{errors.first_name}</span>                        
+                    }
+                </div>
+                <div className='registorForm-last-name-container'>
+                    <label 
+                        className='registorForm-last-name-label'
+                        htmlFor='last_name'
+                    >
+                        Last Name*
+                    </label>
+                    <input 
+                        className='registorForm-last-name-input'
+                        type='text'
+                        name='last_name'
+                        value={values.last_name}
+                        placeholder='Enter Last Name'
+                        onChange={(e) => handleChange(e)}
+                        style={{
+                            borderColor: errors.last_name && 'red',
+                            boxShadow: errors.last_name && '0 0 5px rgba(225, 0, 0, 0.8)'
+
+                        }}
+                    />
+                    {
+                        errors.last_name
+                            && <span className='registorForm-error-message'>{errors.last_name}</span>                        
+                    }
+                </div>
+                <div className='registorForm-dob-container'>
+                    <label 
+                        className='registorForm-dob-label'
+                        htmlFor='dob'
+                    >
+                        DOB*
+                    </label>
+                    <input 
+                        className='registorForm-dob-input'
+                        type='date'
+                        name='dob'
+                        value={values.dob}
+                        onChange={(e) => handleChange(e)}
+                        style={{
+                            borderColor: errors.dob && 'red',
+                            boxShadow: errors.dob && '0 0 5px rgba(225, 0, 0, 0.8)'
+                        }}
+                    />
+                    {
+                        errors.dob
+                            && <span className='registorForm-error-message'>{errors.dob}</span>                        
                     }
                 </div>
                 <div className='registorForm-email-container'>
@@ -154,7 +108,8 @@ function RegistorForm() {
                         placeholder='Enter Email'
                         onChange={(e) => handleChange(e)}
                         style={{
-                            borderColor: errors.email ? 'red' : ''
+                            borderColor: errors.email && 'red',
+                            boxShadow: errors.email && '0 0 5px rgba(225, 0, 0, 0.8)'
                         }}
                     />
                     {
@@ -177,7 +132,8 @@ function RegistorForm() {
                         placeholder='Enter Guardian Email'
                         onChange={(e) => handleChange(e)}
                         style={{
-                            borderColor: errors.guardian_email ? 'red' : ''
+                            borderColor: errors.guardian_email && 'red',
+                            boxShadow: errors.guardian_email && '0 0 5px rgba(225, 0, 0, 0.8)'
                         }}
                     />
                     {
@@ -200,7 +156,8 @@ function RegistorForm() {
                         placeholder='Enter Password'
                         onChange={(e) => handleChange(e)}
                         style={{
-                            borderColor: errors.password ? 'red' : ''
+                            borderColor: errors.password && 'red',
+                            boxShadow: errors.password && '0 0 5px rgba(225, 0, 0, 0.8)'
                         }}
                     />
                     {
@@ -223,7 +180,8 @@ function RegistorForm() {
                         placeholder='Enter Confirm Password'
                         onChange={(e) => handleChange(e)}
                         style={{
-                            borderColor: errors.confirm_password ? 'red' : ''
+                            borderColor: errors.confirm_password && 'red',
+                            boxShadow: errors.confirm_password && '0 0 5px rgba(225, 0, 0, 0.8)'
                         }}
                     />
                     {
@@ -231,13 +189,18 @@ function RegistorForm() {
                             && <span className='registorForm-error-message'>{errors.confirm_password}</span>                        
                     }
                 </div>
-                <button 
-                    className='registorForm-submit-button'
-                    type='submit'
-                >
-                    Submit
-                </button>
-                <Link to='/login'><small>Login</small></Link>
+                <div className='registor-form-button-container'>
+                <div className='submit-buttob-container'>
+                    <button 
+                        className='registorForm-submit-button'
+                        type='submit'
+                    >
+                        Submit
+                    </button>
+                </div>                
+                <div className='login-button-container'>
+                    <Link to='/login'><button className='login-button'>Login</button></Link>                    
+                </div> </div>               
             </form>
         </div>
     );

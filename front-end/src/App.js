@@ -5,18 +5,15 @@ import ScheduleForm from './forms/ScheduleForm';
 import ScheduleList from './user-acount-page/ScheduleList';
 import RegistorForm from './forms/RegistorForm';
 import LoginForm from './forms/LoginForm';
-import userContext from './userContext';
-import { useEffect, useState } from 'react';
+import {userContext} from './userContext';
+import { useState } from 'react';
 
 function App() {
 
-    /* useEffect(() => {
-        var [user, setUser] = useState(userContext);
-        console.log(user);
-    }, []); */
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('userData')));
 
     return (
-        <userContext.Provider >
+        <userContext.Provider value={{user, setUser}}>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/schedule">

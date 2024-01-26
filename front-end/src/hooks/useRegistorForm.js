@@ -10,9 +10,7 @@ export default () => {
     const [values, setValues] = useState({
         first_name: '',
         last_name: '',
-        user_id: '',
         dob: '',
-        mobile_number: '',
         email: '',
         guardian_email: '',
         password: '',
@@ -40,8 +38,6 @@ export default () => {
                 console.log(response);
                 if(response.data.email_repeat){
                     setErrors((prevErrors) => ({ ...prevErrors, email: 'Email already exist' }));
-                } else if(response.data.user_id_repeat){
-                    setErrors((prevErrors) => ({ ...prevErrors, user_id: 'user_id already exist' }));
                 } else {
                     alert('form submited successfully');
                     navigate('/schedule/data'); 

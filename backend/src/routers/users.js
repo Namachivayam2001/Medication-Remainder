@@ -5,16 +5,14 @@ const isUserExist = require('../db/check-login-data')
 const fetchData = require('../db/fetch-data-login')
 
 const tabel_name = "_users";
-const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(100), last_name VARCHAR(100), user_id VARCHAR(100), dob DATE, mobile_number VARCHAR(20), email VARCHAR(255), guardian_email VARCHAR(255), password VARCHAR(255)';
+const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(100), last_name VARCHAR(100), dob DATE, email VARCHAR(255), guardian_email VARCHAR(255), password VARCHAR(255)';
 
 router.post('/registor', async (req, res) => {
     try{
         const {
             first_name,
             last_name,
-            user_id,
             dob,
-            mobile_number,
             email,
             guardian_email,
             password,
@@ -23,9 +21,7 @@ router.post('/registor', async (req, res) => {
         const response = await schedule(tabel_name, tableDefinition, {
             first_name,
             last_name,
-            user_id,
             dob,
-            mobile_number,
             email,
             guardian_email,
             password,

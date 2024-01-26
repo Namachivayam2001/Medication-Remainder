@@ -2,8 +2,11 @@ import {useState} from 'react';
 import validate from '../utils/validateLoginForm';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../userContext';
 
 export default () => {
+    const value = useUserContext();
+    const {setUser} = value;
 
     const navigate = useNavigate()
 
@@ -35,6 +38,7 @@ export default () => {
                     const userData = response.data.userRecord;
                     // Store user details in localStorage
                     localStorage.setItem('userData', JSON.stringify(userData));
+                    setUser(userData);
                     navigate('/')
                 } else if(response.data.match_email){
                     setErrors((prevErrors) => ({ ...prevErrors, password: 'Password incorrect' }));

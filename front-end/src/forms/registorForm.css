@@ -8,45 +8,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 100px;
 }
 
 .registorForm{
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
     padding: 20px;
-    border-radius: 20px;
     width: 600px;
     margin: 0px auto;
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);;
+    margin: 100px 0px;
 }
 
 .registorForm-heading{
     text-align: center;
     padding: 10px;
-    font-size: 60px;
-    color: #fff;
-    text-shadow: 5px 5px 5px #000;
-}
-
-.registorForm-name-container,
-.registorForm-user-id-dob-container{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-
-.registorForm-first-name-container,
-.registorForm-last-name-container{
-    width: 50%;
-}
-
-.registorForm-user-id-container{
-    width: 70%;
-}
-
-.registorForm-dob-container{
-    width: 30%;
 }
 
 .registorForm input{
@@ -55,10 +34,17 @@
     padding: 6px;
     border-radius: 5px;
     border: 1px solid black;
+    margin-top: 5px;
 }
 
+.registorForm input:focus {
+    border-color: blue; 
+    box-shadow: 0 0 5px rgba(0, 0, 255, 0.8);
+}
+
+
 .registorForm-submit-button{
-    width: 100px;
+    width: 100%;
     font-size: 1.2em;
     padding: 7px;
     background-color: #4caf50;
@@ -67,11 +53,6 @@
     border-radius: 5px;
     cursor: pointer;
     margin: 0 auto;
-}
-
-.registorForm label{
-    font-weight: bold;
-    margin-left: 5px;
 }
 
 .registorForm-submit-button:hover{
@@ -93,4 +74,20 @@
     color: red;
     font-size: small;
     margin-left: 5px;
+}
+.login-button-container{
+    width: fit-content;
+    margin: 0px auto;
+}
+
+.login-button{
+    padding: 5px 20px;
+    background-color: rgba(0, 0, 255, 0.8);
+    color: white;
+    border: 1px solid blue;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.registor-form-button-container{
+    padding: 10px;
 }
