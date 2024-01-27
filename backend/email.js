@@ -15,7 +15,7 @@ module.exports = (to_email, is_guardian, user_name) => {
         // Email content
         mailOptions = {
             from: 'newtonremo143@gmail.com',
-            to: `${to_email}`,
+            to: to_email,
             subject: ` Medication Reminder -${user_name}`,
             text: `Dear ${user_name},
                 
@@ -39,30 +39,28 @@ module.exports = (to_email, is_guardian, user_name) => {
         // Email content
         mailOptions = {
             from: 'newtonremo143@gmail.com',
-            to: `${to_email}`,
+            to: to_email,
             subject: ` Medication Alert for ${user_name}`,
             text: `Dear Guardian of ${user_name},
                 
-                I hope this message finds you well. We are writing to inform you about a critical matter concerning the health of ${user_name}.
+        I hope this message finds you well. We are writing to inform you about a critical matter concerning the health of ${user_name}.
                 
-                Medication Alert:
-                Our medication reminder system has detected that ${user_name} has missed their scheduled medication for the past five instances. 
-                
-                Possible Consequences:
-                Skipping medication can have adverse effects on ${user_name}'s health, as prescribed medications are vital for managing their medical condition.
-                
-                Recommended Action:
-                We strongly advise you to reach out to ${user_name} immediately to ensure they take their medication as prescribed. Additionally, consider consulting with their healthcare provider to discuss any potential adjustments to the medication plan.
-                
-                Your Assistance is Crucial:
-                Your prompt attention to this matter is crucial for ${user_name}'s well-being. We appreciate your cooperation and understanding.
-                
-                Thank you for being a part of Medi Remaind.
-
-                Best regards,
-
-                Medi Remaind team
-                Medi Remaind              
+        Medication Alert:
+        Our medication reminder system has detected that ${user_name} has missed their scheduled medication for the past five instances. 
+        
+        Possible Consequences:
+        Skipping medication can have adverse effects on ${user_name}'s health, as prescribed medications are vital for managing their medical condition.
+        
+        Recommended Action:
+        We strongly advise you to reach out to ${user_name} immediately to ensure they take their medication as prescribed. Additionally, consider consulting with their healthcare provider to discuss any potential adjustments to the medication plan.
+        
+        Your Assistance is Crucial:
+        Your prompt attention to this matter is crucial for ${user_name}'s well-being. We appreciate your cooperation and understanding.
+        
+        Thank you for being a part of Medi Remaind
+        Best regards
+        Medi Remaind team
+        Medi Remaind              
             `
         };
     }

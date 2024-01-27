@@ -36,7 +36,7 @@ setInterval(async () => {
                 
                     const notification_record = await featchNotication(table_name, item.id);
                     console.log(notification_record);
-                    if (notification_record[0].notification && notificationAttempts < 5) {
+                    if (notification_record.notification && notificationAttempts < 5) {
                 
                         //getting email and guardian email using join query
                         const emailRecord = await fetchEmail(item.user_id);
@@ -47,11 +47,11 @@ setInterval(async () => {
                         await sendNotification(emailRecord.email, false, user_name);
                         notificationAttempts++;
 
-                    } else if ( !notification_record[0].notification && notificationAttempts < 5 ){
+                    } else if ( !notification_record.notification && notificationAttempts < 5 ){
                         notificationAttempts++;
                     }
                 
-                    if (notification_record[0].notification && notificationAttempts >= 5) {
+                    if (notification_record.notification && notificationAttempts >= 5) {
                 
                         //getting email and guardian email using join query
                         const emailRecord = await fetchEmail(item.user_id);
@@ -64,7 +64,7 @@ setInterval(async () => {
                             : await updateDays(table_name, item.id, item.days - 1);
                         notificationAttempts++;
 
-                    } else if (!notification_record[0].notification && notificationAttempts >= 5){
+                    } else if (!notification_record.notification && notificationAttempts >= 5){
 
                         if(item.days - 1 <= 0){
                             await deleteRecord(table_name, item.id)

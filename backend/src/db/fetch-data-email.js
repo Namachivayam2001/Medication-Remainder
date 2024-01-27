@@ -12,7 +12,7 @@ module.exports = async (user_id) => {
             [user_id]
         );
         connection.release();
-        return(rows);
+        return(rows[0]);
     } catch (error) {
         console.error('Error fetching data:', error);
     }
