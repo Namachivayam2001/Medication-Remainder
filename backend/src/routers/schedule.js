@@ -1,18 +1,29 @@
 const express = require('express')
 const router = express.Router()
 const schedule = require('../db/schedule')
-const fetchData = require('../db/fetch-data')
+const fetchData = require('../db/fetch-data-schedule')
 const updateNotification = require('../db/update-notification')
 const deleteRecord = require('../db/delete-record')
 
 const tabel_name = "_schedules";
-const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, time TIME, days INT, hint VARCHAR(255), notification BOOLEAN';
+const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, time TIME, days INT, hint VARCHAR(255), notification BOOLEAN, FOREIGN KEY(user_id) REFERENCES _users(id)';
 
 router.post('/form', async (req, res) => {
     try{
-        const {time, days, hint,  notification} = req.body;
-
-        await schedule(tabel_name, tableDefinition, {time, days, hint, notification})
+        const {
+            user_id, 
+            time, 
+            days, 
+            hint,  
+            notification,
+        } = req.body;
+        await schedule(tabel_name, tableDefinition, {
+            user_id, 
+            time, 
+            days, 
+            hint, 
+            notification,
+        })
         ? res.status(200).json({inserted: true})
         : res.status(401).json({inserted: false})
         
@@ -21,9 +32,10 @@ router.post('/form', async (req, res) => {
     }    
 })
 
-router.get('/data', async (req, res) => {
+router.get('/data/:user_id', async (req, res) => {
     try{
-        const data = await fetchData(tabel_name);
+        const user_id = parseInt(req.params.user_id, 10);
+        const data = await fetchData(tabel_name, user_id);
         res.status(200).json(data);
         console.log('Data fetched successfully');
     } catch (error) {

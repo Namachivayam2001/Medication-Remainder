@@ -48,12 +48,12 @@ export default () =>  {
         }
     }
 
-    const fetchData = async () => {
+    const fetchData = async (user_id) => {
         console.log(user)
         if(user){
             console.log('fetch')
             try {
-                const response = await axios.get('http://localhost:3030/schedule/data');
+                const response = await axios.get(`http://localhost:3030/schedule/data/${user_id}`);
                 const formattedData = response.data.map(item => ({
                     ...item,
                     time: convertTo12HourFormat(item.time),

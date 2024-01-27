@@ -5,7 +5,7 @@ import './scheduleList.css';
 import useList from '../hooks/useScheduleList';
 
 function ScheduleList() {   
-    
+
     const {
         handleToggle,
         handleDelete,
@@ -20,7 +20,7 @@ function ScheduleList() {
 
     /* Fetching the data from server when it renders */
     useEffect(() => {
-        fetchData();
+        fetchData(user.id);
     }, [user]);
 
     if (loading) {

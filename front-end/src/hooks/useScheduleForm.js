@@ -2,17 +2,23 @@ import {useState} from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import validate from '../utils/validateScheduleForm';
+import {useUserContext} from '../userContext';
 
 export default () => {
 
     const navigate = useNavigate();
+    const user_values = useUserContext();
+    const {user, setUser} = user_values;
 
     const [values, setValues] = useState({
+        user_id: user.id, //usser_id from login user
         time: '',
         days: '',
         hint: '',
         notification: true,
     });
+
+
 
     const [errors, setErrors] = useState({});
 
@@ -31,8 +37,9 @@ export default () => {
             e.preventDefault();
             setErrors(() => validate(values));
             if (Object.keys(validate(values)).length === 0) {
-                const scheduleInserted = await axios.post('http://localhost:3030/schedule/form', values);
-                if(scheduleInserted.data.inserted){
+                const response = await axios.post('http://localhost:3030/schedule/form', values);
+                if(response.data.inserted){
+                    setUser(user);
                     alert('form submited successfully');
                     navigate('/schedule/data'); 
                 } else {

@@ -40,7 +40,7 @@ export default () => {
                     setErrors((prevErrors) => ({ ...prevErrors, email: 'Email already exist' }));
                 } else {
                     alert('form submited successfully');
-                    navigate('/schedule/data'); 
+                    navigate('/login'); 
                 }           
             } 
         } catch (error) {
