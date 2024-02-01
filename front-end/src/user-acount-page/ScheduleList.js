@@ -13,15 +13,14 @@ function ScheduleList() {
         data,
         loading,
         error,
-        user
     } = useList();
 
     const tableName = data.length <= 6 ? 'small-table' : 'large-table';
 
     /* Fetching the data from server when it renders */
     useEffect(() => {
-        fetchData(user.id);
-    }, [user]);
+        fetchData();
+    }, []);
 
     if (loading) {
         return <p id ="loding">Loading...</p>;

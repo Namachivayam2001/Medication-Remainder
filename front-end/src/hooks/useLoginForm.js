@@ -41,11 +41,11 @@ export default () => {
                     
                 } else {
                     const token = response.data;
-                    const userData = jwtDecode(token);
-                    
+                    const userId = jwtDecode(token);
+                    console.log(userId)
                     localStorage.setItem('token', JSON.stringify(token));
 
-                    setUser(userData.userRecord);
+                    setUser((pre) => ({...pre, userId: userId.uderId}));
                     navigate('/');
                 }
             }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useUserContext } from '../userContext';
+import { jwtDecode } from "jwt-decode";
 
 export default () =>  {
 
@@ -21,49 +22,50 @@ export default () =>  {
 
     /* update the notification when it toggle */
     const handleToggle = async (itemId) => {
-        try {
-            const updatedData = data.map((item) => 
-                item.id === itemId 
-                    ? { ...item, notification: !item.notification } 
-                    : item
-            );
-            setData(updatedData);
-            await axios.put(`http://localhost:3030/schedule/data/${itemId}`);
-        } catch (error) {
+        await axios.put(`http://localhost:3030/schedule/data/${itemId}`,{
+            headers: {
+                'token': `${JSON.parse(localStorage.getItem('token'))}`
+            }
+        }).then(res => {
+            setData(res);
+        }).catch (error => {
             console.error('Error updating data:', error);
-        }
+        })
     };
 
     /* Delete the records from ScheduleList */
     const handleDelete = async (itemId) => {
-        try{
-            const updatedData = data.filter((item) => 
-                item.id !== itemId && item
-            );
-            setData(updatedData);
-            await axios.delete(`http://localhost:3030/schedule/data/${itemId}`);
-            alert('scheduel deleted successfully')
-        } catch (error) {
-            console.error('Error delete data: ', error)
-        }
+             
+        await axios.delete(`http://localhost:3030/schedule/data/${itemId}`,{
+            headers: {
+                'token': `${JSON.parse(localStorage.getItem('token'))}`
+            }
+        }).then(res => {
+            setData(res);
+        }).catch (error => {
+            console.error('Error delete data: ', error);
+        });
     }
 
-    const fetchData = async (user_id) => {
-        console.log(user)
+    const fetchData = async () => {
         if(user){
-            console.log('fetch')
-            try {
-                const response = await axios.get(`http://localhost:3030/schedule/data/${user_id}`);
-                const formattedData = response.data.map(item => ({
+            await axios.get(`http://localhost:3030/schedule/data`, {
+                headers: {
+                    'token': `${JSON.parse(localStorage.getItem('token'))}`
+                }
+            }).then(res => {
+                const token = res.data;
+                const decoded_data = jwtDecode(token);
+                const formattedData = decoded_data.schedules.map(item => ({
                     ...item,
                     time: convertTo12HourFormat(item.time),
                 }));
-                setData(formattedData);
+                setData(formattedData)
                 setLoading(false);
-            } catch (error) {
+            }).catch (error => {
                 console.error('Error fetching data:', error);
                 setError('Error fetching data. Please try again later.');
-            }
+            })
         } else {
             alert('Please Login');
             setLoading(false);

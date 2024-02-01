@@ -9,7 +9,14 @@ module.exports = async (table_name, data) => {
         );
 
         connection.release();
-        const userRecord = rows[0];
+        const userRecord = {
+            id: rows[0].id,
+            first_name: rows[0].first_name,
+            last_name: rows[0].last_name,
+            dob: rows[0].dob,
+            email: rows[0].email,
+            guardian_email: rows[0].guardian_email
+        };
         console.log('User record:', userRecord);
         return userRecord;
     } catch (error) {

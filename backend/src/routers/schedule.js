@@ -1,9 +1,13 @@
-const express = require('express')
-const router = express.Router()
-const schedule = require('../db/schedule')
-const fetchData = require('../db/fetch-data-schedule')
-const updateNotification = require('../db/update-notification')
-const deleteRecord = require('../db/delete-record')
+const express = require('express');
+const router = express.Router();
+const schedule = require('../db/schedule');
+const fetchData = require('../db/fetch-data-schedule');
+const updateNotification = require('../db/update-notification');
+const deleteRecord = require('../db/delete-record');
+const verifyToken = require('../../middleware/verifyToken');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const secret_key = process.env.secret_key;
 
 const tabel_name = "_schedules";
 const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, time TIME, days INT, hint VARCHAR(255), notification BOOLEAN, FOREIGN KEY(user_id) REFERENCES _users(id)';
@@ -32,18 +36,21 @@ router.post('/form', async (req, res) => {
     }    
 })
 
-router.get('/data/:user_id', async (req, res) => {
-    try{
-        const user_id = parseInt(req.params.user_id, 10);
-        const data = await fetchData(tabel_name, user_id);
-        res.status(200).json(data);
+router.get('/data', verifyToken, async (req, res) => {    
+    const user_id = req.userId;
+    await fetchData(tabel_name, user_id)
+    .then(data => {
+        console.log(data);
+        const token = jwt.sign({schedules: data}, secret_key);
+        res.header('user_schedules', token).json(token);
         console.log('Data fetched successfully');
-    } catch (error) {
-        res.status(500).json({error: 'Internal Server Error'});
-    } 
+    })
+    .catch (err => {
+        res.status(500).json({error: `Internal Server Error ${err}`});
+    })
 })
 
-router.put('/data/:itemId', async (req, res) => {
+router.put('/data/:itemId',verifyToken, async (req, res) => {
     try{
         const itemId = parseInt(req.params.itemId, 10);
         await updateNotification(tabel_name, itemId);
@@ -53,7 +60,7 @@ router.put('/data/:itemId', async (req, res) => {
     }  
 });
 
-router.delete('/data/:itemId', async (req, res) => {
+router.delete('/data/:itemId', verifyToken, async (req, res) => {
     try{
         const itemId = parseInt(req.params.itemId, 10);
         await deleteRecord(tabel_name, itemId);

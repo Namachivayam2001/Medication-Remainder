@@ -7,10 +7,11 @@ import RegistorForm from './forms/RegistorForm';
 import LoginForm from './forms/LoginForm';
 import {userContext} from './userContext';
 import { useState } from 'react';
+import {jwtDecode} from 'jwt-decode';
 
 function App() {
-
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('userData')));
+    const token = jwtDecode(JSON.parse(localStorage.getItem('token')));
+    const [user, setUser] = useState(token);
 
     return (
         <userContext.Provider value={{user, setUser}}>

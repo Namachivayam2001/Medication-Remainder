@@ -11,7 +11,7 @@ export default () => {
     const {user, setUser} = user_values;
 
     const [values, setValues] = useState({
-        user_id: user.id, //usser_id from login user
+        user_id: user.userId,
         time: '',
         days: '',
         hint: '',
