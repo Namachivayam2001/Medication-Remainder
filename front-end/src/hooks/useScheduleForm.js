@@ -11,7 +11,7 @@ export default () => {
     const {user, setUser} = user_values;
 
     const [values, setValues] = useState({
-        user_id: user.userId,
+        user_id: user ? user.userId : '',
         time: '',
         days: '',
         hint: '',

@@ -45,7 +45,7 @@ export default () => {
                     console.log(userId)
                     localStorage.setItem('token', JSON.stringify(token));
 
-                    setUser((pre) => ({...pre, userId: userId.uderId}));
+                    setUser((pre) => ({...pre, userId: userId.userId}));
                     navigate('/');
                 }
             }

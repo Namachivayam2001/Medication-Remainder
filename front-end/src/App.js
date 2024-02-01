@@ -10,8 +10,12 @@ import { useState } from 'react';
 import {jwtDecode} from 'jwt-decode';
 
 function App() {
-    const token = jwtDecode(JSON.parse(localStorage.getItem('token')));
-    const [user, setUser] = useState(token);
+    const token = localStorage.getItem('token');
+
+    const isToken = token 
+        ? jwtDecode(token) 
+        : null;
+    const [user, setUser] = useState(isToken);
 
     return (
         <userContext.Provider value={{user, setUser}}>
