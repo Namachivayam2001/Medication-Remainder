@@ -2,12 +2,12 @@ const nodemailer = require('nodemailer');
 
 module.exports = (to_email, is_guardian, user_name) => {
     let mailOptions = {};
-    // Create a transporter with your email service credentials
+    
     const transporter = nodemailer.createTransport({
-        service: 'gmail', // Use the email service you prefer
+        service: 'gmail', 
         auth: {
-            user: 'newtonremo143@gmail.com', // Your email address
-            pass: 'mlae tpbh kevr owvp' // Your email password or an app-specific password
+            user: 'newtonremo143@gmail.com', 
+            pass: 'mlae tpbh kevr owvp' 
         }
     });
     
@@ -19,20 +19,20 @@ module.exports = (to_email, is_guardian, user_name) => {
             subject: ` Medication Reminder -${user_name}`,
             text: `Dear ${user_name},
                 
-                I hope this email finds you well. This is a friendly reminder about your upcoming medication.
-                
-                Reminder Message:
-                Please take your medication as prescribed by your healthcare provider. It is crucial to adhere to your medication schedule for your well-being.
-                
-                Guardian Notification:
-                This email is a part of our reminder service. If you miss five consecutive reminders, an alert email will be sent to your designated guardian's email address.
-                
-                Thank you for prioritizing your health!
+        I hope this email finds you well. This is a friendly reminder about your upcoming medication.
+        
+        Reminder Message:
+        Please take your medication as prescribed by your healthcare provider. It is crucial to adhere to your medication schedule for your well-being.
+        
+        Guardian Notification:
+        This email is a part of our reminder service. If you miss five consecutive reminders, an alert email will be sent to your designated guardian's email address.
+        
+        Thank you for prioritizing your health!
 
-                Best regards,
+        Best regards,
 
-                Medi Remaind team
-                Medi Remaind              
+        Medi Remaind team
+        Medi Remaind              
             `,
         };
     }else {

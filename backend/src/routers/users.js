@@ -3,6 +3,9 @@ const router = express.Router()
 const schedule = require('../db/registor-schedule')
 const isUserExist = require('../db/check-login-data')
 const fetchData = require('../db/fetch-data-login')
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const secret_key = process.env.secret_key;
 
 const tabel_name = "_users";
 const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(100), last_name VARCHAR(100), dob DATE, email VARCHAR(255), guardian_email VARCHAR(255), password VARCHAR(255)';
@@ -42,18 +45,11 @@ router.post('/login', async (req, res) => {
         
         if (userExist.match_email && userExist.match_password) {
             const userRecord = await fetchData(tabel_name, { email, password });
-            res.status(200).json({ 
-                status: 'Login successful', 
-                match_email: userExist.match_email, 
-                match_password: userExist.match_password, 
-                userRecord,
-            });
-        } else if(userExist.match_email){
-            res.status(200).json({ 
-                status: 'Login Fail', 
-                match_email: userExist.match_email, 
-                match_password: userExist.match_password, 
-            });
+
+            // Generate JWT token
+            const token = jwt.sign({ userRecord: userRecord}, secret_key);
+
+            res.header('userData', token).json(token)
         } else {
             res.status(200).json({ 
                 status: 'Login Fail',

@@ -3,6 +3,7 @@ import validate from '../utils/validateLoginForm';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../userContext';
+import {jwtDecode} from 'jwt-decode'
 
 export default () => {
     const value = useUserContext();
@@ -34,16 +35,18 @@ export default () => {
 
             if (Object.keys(validate(values)).length === 0) {
                 const response = await axios.post('http://localhost:3030/users/login', values);
-                if(response.data.status ===  'Login successful'){
-                    const userData = response.data.userRecord;
-                    // Store user details in localStorage
-                    localStorage.setItem('userData', JSON.stringify(userData));
-                    setUser(userData);
-                    navigate('/')
-                } else if(response.data.match_email){
-                    setErrors((prevErrors) => ({ ...prevErrors, password: 'Password incorrect' }));
-                }else{
-                    setErrors((prevErrors) => ({ ...prevErrors, email: 'incorrect Email and password please registor', password: 'incorrect Email and password please registor' }));
+                console.log(response);
+                if(response.data.status ===  'Login Fail'){
+                    setErrors((prevErrors) => ({ ...prevErrors, email: 'incorrect Email or password please registor', password: 'incorrect Email or password please registor' }));
+                    
+                } else {
+                    const token = response.data;
+                    const userData = jwtDecode(token);
+                    
+                    localStorage.setItem('token', JSON.stringify(token));
+
+                    setUser(userData.userRecord);
+                    navigate('/');
                 }
             }
         } catch (error) {
