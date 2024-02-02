@@ -3,8 +3,7 @@ require('dotenv').config();
 const secret_key = process.env.secret_key;
 
 const verifyToken = (req, res, next) => {
-    const token = req.headers['token'];
-
+    const token = req.body.headers.token;
     if (!token) {
         return res.status(401).json({ error: 'Unauthorized: Token not provided' });
     }

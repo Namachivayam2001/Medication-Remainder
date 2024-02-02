@@ -4,7 +4,8 @@ const schedule = require('../db/schedule');
 const fetchData = require('../db/fetch-data-schedule');
 const updateNotification = require('../db/update-notification');
 const deleteRecord = require('../db/delete-record');
-const verifyToken = require('../../middleware/verifyToken');
+const verifyNotificationToken = require('../../middleware/verifyNotificationToken')
+const verifySchedulesToken = require('../../middleware/verifySchedulesToken');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const secret_key = process.env.secret_key;
@@ -36,31 +37,35 @@ router.post('/form', async (req, res) => {
     }    
 })
 
-router.get('/data', verifyToken, async (req, res) => {    
+router.get('/data', verifySchedulesToken, async (req, res) => {    
     const user_id = req.userId;
     await fetchData(tabel_name, user_id)
     .then(data => {
-        console.log(data);
         const token = jwt.sign({schedules: data}, secret_key);
         res.header('user_schedules', token).json(token);
         console.log('Data fetched successfully');
     })
     .catch (err => {
         res.status(500).json({error: `Internal Server Error ${err}`});
-    })
+    });
 })
 
-router.put('/data/:itemId',verifyToken, async (req, res) => {
-    try{
-        const itemId = parseInt(req.params.itemId, 10);
-        await updateNotification(tabel_name, itemId);
-        res.status(200).send('Notification Updated successfully');
-    } catch (error) {
-        res.status(500).json({error: 'Internal Server Error'});
-    }  
+router.put('/data',verifyNotificationToken, async (req, res) => {
+
+        const itemId = req.body.headers.itemId;
+        const userId = req.userId;
+        await updateNotification(tabel_name, itemId, userId)
+        .then(data => {
+            const token = jwt.sign({togeled_data: data}, secret_key);
+            res.header('altered_schedules', token).json(token);
+            console.log('notification toggled successfully');
+        })
+        .catch(error => {
+            res.status(500).json({error: `Internal Server Error ${error}`});
+        });
 });
 
-router.delete('/data/:itemId', verifyToken, async (req, res) => {
+router.delete('/data/:itemId', verifyNotificationToken, async (req, res) => {
     try{
         const itemId = parseInt(req.params.itemId, 10);
         await deleteRecord(tabel_name, itemId);

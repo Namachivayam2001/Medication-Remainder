@@ -22,12 +22,19 @@ export default () =>  {
 
     /* update the notification when it toggle */
     const handleToggle = async (itemId) => {
-        await axios.put(`http://localhost:3030/schedule/data/${itemId}`,{
+        await axios.put('http://localhost:3030/schedule/data',{
             headers: {
-                'token': `${JSON.parse(localStorage.getItem('token'))}`
+                'token': `${JSON.parse(localStorage.getItem('token'))}`,
+                'itemId': `${itemId}`
             }
         }).then(res => {
-            setData(res);
+            const token = res.data;
+            const decoded_data = jwtDecode(token);
+            const formattedData = decoded_data.togeled_data.map(item => ({
+                ...item,
+                time: convertTo12HourFormat(item.time),
+            }));
+            setData(formattedData);
         }).catch (error => {
             console.error('Error updating data:', error);
         })
@@ -36,9 +43,10 @@ export default () =>  {
     /* Delete the records from ScheduleList */
     const handleDelete = async (itemId) => {
              
-        await axios.delete(`http://localhost:3030/schedule/data/${itemId}`,{
+        await axios.delete(`http://localhost:3030/schedule/data/`,{
             headers: {
-                'token': `${JSON.parse(localStorage.getItem('token'))}`
+                'token': `${JSON.parse(localStorage.getItem('token'))}`,
+                'itemId': `${itemId}`
             }
         }).then(res => {
             setData(res);
