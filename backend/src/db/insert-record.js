@@ -1,7 +1,6 @@
 module.exports = async (table_name, data, connection) => {
     try {
         const columns = Object.keys(data);
-        console.log(columns)
         const values = Object.values(data).map(value => connection.escape(value));
         const query = `INSERT INTO ${table_name} (${columns.join(', ')}) VALUES (${values.join(', ')})`;
         await connection.query(query);

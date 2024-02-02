@@ -7,13 +7,14 @@ const deleteRecord = require('../db/delete-record');
 const verifyNotificationToken = require('../../middleware/verifyNotificationToken')
 const verifySchedulesToken = require('../../middleware/verifySchedulesToken');
 const jwt = require('jsonwebtoken');
+const verifyNewScheduleToken = require('../../middleware/verifyNewScheduleToken');
 require('dotenv').config();
 const secret_key = process.env.secret_key;
 
 const tabel_name = "_schedules";
 const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, time TIME, days INT, hint VARCHAR(255), notification BOOLEAN, FOREIGN KEY(user_id) REFERENCES _users(id)';
 
-router.post('/form', async (req, res) => {
+router.post('/form', verifyNewScheduleToken, async (req, res) => {
     try{
         const {
             user_id, 
@@ -21,7 +22,8 @@ router.post('/form', async (req, res) => {
             days, 
             hint,  
             notification,
-        } = req.body;
+        } = JSON.parse(req.body.headers['values']);
+
         await schedule(tabel_name, tableDefinition, {
             user_id, 
             time, 
