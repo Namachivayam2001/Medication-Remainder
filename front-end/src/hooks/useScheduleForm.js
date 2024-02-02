@@ -51,5 +51,11 @@ export default () => {
         }
     }
 
-    return {handleChange, values, handleSubmit, errors};
+    return {
+        handleChange, 
+        values, 
+        handleSubmit, 
+        errors,
+        user
+    };
 }

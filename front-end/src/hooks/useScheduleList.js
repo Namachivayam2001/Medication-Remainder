@@ -2,11 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import { useUserContext } from '../userContext';
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 export default () =>  {
 
     const values = useUserContext();
     const {user} = values;
+
+    const navigate = useNavigate();
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -72,11 +75,13 @@ export default () =>  {
                 setLoading(false);
             }).catch (error => {
                 console.error('Error fetching data:', error);
+                setLoading(false);
                 setError('Error fetching data. Please try again later.');
             })
         } else {
-            alert('Please Login');
             setLoading(false);
+            alert('Please Login');
+            navigate('../../login');
         }
         
     };
