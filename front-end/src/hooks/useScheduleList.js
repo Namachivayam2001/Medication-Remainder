@@ -46,13 +46,19 @@ export default () =>  {
     /* Delete the records from ScheduleList */
     const handleDelete = async (itemId) => {
              
-        await axios.delete(`http://localhost:3030/schedule/data/`,{
+        await axios.delete(`http://localhost:3030/schedule/data`,{
             headers: {
                 'token': `${JSON.parse(localStorage.getItem('token'))}`,
                 'itemId': `${itemId}`
             }
         }).then(res => {
-            setData(res);
+            const token = res.data;
+            const decoded_data = jwtDecode(token);
+            const formattedData = decoded_data.remaining_data.map(item => ({
+                ...item,
+                time: convertTo12HourFormat(item.time),
+            }));
+            setData(formattedData);
         }).catch (error => {
             console.error('Error delete data: ', error);
         });

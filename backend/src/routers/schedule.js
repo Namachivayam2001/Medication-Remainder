@@ -6,8 +6,9 @@ const updateNotification = require('../db/update-notification');
 const deleteRecord = require('../db/delete-record');
 const verifyNotificationToken = require('../../middleware/verifyNotificationToken')
 const verifySchedulesToken = require('../../middleware/verifySchedulesToken');
-const jwt = require('jsonwebtoken');
 const verifyNewScheduleToken = require('../../middleware/verifyNewScheduleToken');
+const verifyDeleteToken = require('../../middleware/verifyDeleteToken');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const secret_key = process.env.secret_key;
 
@@ -53,9 +54,9 @@ router.get('/data', verifySchedulesToken, async (req, res) => {
 })
 
 router.put('/data',verifyNotificationToken, async (req, res) => {
-
-        const itemId = req.body.headers.itemId;
         const userId = req.userId;
+        const itemId = req.body.headers.itemId;
+
         await updateNotification(tabel_name, itemId, userId)
         .then(data => {
             const token = jwt.sign({togeled_data: data}, secret_key);
@@ -67,14 +68,18 @@ router.put('/data',verifyNotificationToken, async (req, res) => {
         });
 });
 
-router.delete('/data/:itemId', verifyNotificationToken, async (req, res) => {
-    try{
-        const itemId = parseInt(req.params.itemId, 10);
-        await deleteRecord(tabel_name, itemId);
-        res.status(200).send('Record Deleted Successfully');
-    }  catch (error) {
-        res.status(500).json({error: 'Internal Server Error'});
-    }
+router.delete('/data', verifyDeleteToken, async (req, res) => {
+        const userId = req.userId;
+        const itemId = req.headers.itemid;
+        await deleteRecord(tabel_name, itemId, userId)
+        .then(data => {
+            const token = jwt.sign({remaining_data: data}, secret_key);
+            res.header('altered_schedules', token).json(token);
+            console.log('record deleted successfully');
+        })
+        .catch (error => {
+            res.status(500).json({error: `Internal Server Error: ${error}`});
+        })
 });
 
 module.exports = router;

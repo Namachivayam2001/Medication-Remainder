@@ -36,11 +36,10 @@ export default () => {
         try {
             e.preventDefault();
             setErrors(() => validate(values));
-            console.log(values);
             if (Object.keys(validate(values)).length === 0) {
                 const response = await axios.post('http://localhost:3030/schedule/form', {
-                    'headers': {
-                        'token': `${localStorage.getItem('token')}`,
+                    headers: {
+                        'token': `${JSON.parse(localStorage.getItem('token'))}`,
                         'values': `${JSON.stringify(values)}`
                     }
                 });

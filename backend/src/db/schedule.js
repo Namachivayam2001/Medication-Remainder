@@ -4,7 +4,6 @@ const isRepeat = require('./check-repeat-data.js')
 
 module.exports = async (tabel_name, tableDefinition, data) => {
     try {
-        console.log('before create table', data);
         const connection = await createTableIfNotExists(tabel_name, tableDefinition);
         const scheduleExist = await isRepeat(tabel_name, data);
         if(scheduleExist){
