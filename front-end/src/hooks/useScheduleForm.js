@@ -11,7 +11,7 @@ export default () => {
     const {user, setUser} = user_values;
 
     const [values, setValues] = useState({
-        user_id: user ? user.userId : '',
+        user_id: user ? user.id : '',
         time: '',
         days: '',
         hint: '',
@@ -44,7 +44,7 @@ export default () => {
                     }
                 });
                 if(response.data.inserted){
-                    setUser(user);
+                    //setUser(user);
                     alert('form submited successfully');
                     navigate('/schedule/data'); 
                 } else {
@@ -52,6 +52,8 @@ export default () => {
                 }            
             }                 
         } catch (error) {
+            alert('you are not a authorized user please login');
+            navigate('/login'); 
             console.error('Error posting data:', error);
         }
     }

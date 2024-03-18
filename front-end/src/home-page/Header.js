@@ -7,15 +7,15 @@ function Header() {
                 <Link to="/" >Medi Remind</Link>
             </p>
             <ul id="nav-right-icons">
-                    <li className="schedule-icon">
-                        <Link to="/schedule/form" >Schedule</Link>
-                    </li>
-                    <li className="contact-icon">
-                        <Link to="/schedule/data" >ScheduleList</Link>
-                    </li>
-                    <li className="login-icon">
-                        <Link to="/login" >Login/Signup</Link>                        
-                    </li>
+                <li className="schedule-icon">
+                    <Link to="/schedule/form" >Schedule</Link>
+                </li>
+                <li className="contact-icon">
+                    <Link to="/schedule/data" >Acount</Link>
+                </li>
+                <li className="login-icon">
+                    <Link to="/login" >Login/Signup</Link>                        
+                </li>
             </ul>
       </div>
     );

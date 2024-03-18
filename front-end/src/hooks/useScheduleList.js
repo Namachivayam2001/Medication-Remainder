@@ -2,12 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import { useUserContext } from '../userContext';
 import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
 
 export default () =>  {
 
-    const values = useUserContext();
-    const {user} = values;
+    const user_values = useUserContext();
+    const {user} = user_values;
 
     const navigate = useNavigate();
 
@@ -65,7 +65,7 @@ export default () =>  {
     }
 
     const fetchData = async () => {
-        if(user){
+        if(user != null){
             await axios.get(`http://localhost:3030/schedule/data`, {
                 headers: {
                     'token': `${JSON.parse(localStorage.getItem('token'))}`

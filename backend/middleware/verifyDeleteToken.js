@@ -12,7 +12,7 @@ const verifyDeleteToken = (req, res, next) => {
         if (err) {
             return res.status(403).json({ error: 'Forbidden: Invalid token' });
         }
-        req.userId = decoded.userId;
+        req.userId = decoded.id;
         next();
     });
 }

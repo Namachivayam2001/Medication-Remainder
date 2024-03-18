@@ -3,10 +3,11 @@ import { FaToggleOn, FaToggleOff } from 'react-icons/fa6';
 import Header from '../home-page/Header';
 import './scheduleList.css';
 import useList from '../hooks/useScheduleList';
+import UserDetials from './UserDetials';
 
 function ScheduleList() {   
 
-    const {
+    const { 
         handleToggle,
         handleDelete,
         fetchData,
@@ -15,7 +16,7 @@ function ScheduleList() {
         error,
     } = useList();
 
-    const tableName = data.length <= 6 ? 'small-table' : 'large-table';
+    const tableName = data.length < 3 ? 'small-table' : 'large-table';
 
     /* Fetching the data from server when it renders */
     useEffect(() => {
@@ -38,6 +39,7 @@ function ScheduleList() {
                 id="scheduleListContainer"
                 className={tableName}
             >  
+                <UserDetials/>
                 <h2>Your Schedule List</h2>
                 <ul className="custom-list">
                     <li id="title">

@@ -47,7 +47,7 @@ router.post('/login', async (req, res) => {
             const userRecord = await fetchData(tabel_name, { email, password });
 
             // Generate JWT token
-            const token = jwt.sign({ userId: userRecord.id}, secret_key);
+            const token = jwt.sign(userRecord, secret_key);
 
             res.header('userData', token).json(token);
         } else {
