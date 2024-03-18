@@ -11,7 +11,7 @@ function Header() {
                     <Link to="/schedule/form" >Schedule</Link>
                 </li>
                 <li className="contact-icon">
-                    <Link to="/schedule/data" >Acount</Link>
+                    <Link to="/schedule/data" >Account</Link>
                 </li>
                 <li className="login-icon">
                     <Link to="/login" >Login/Signup</Link>                        

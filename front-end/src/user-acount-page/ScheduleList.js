@@ -46,6 +46,7 @@ function ScheduleList() {
                         <p className="time-head">Time</p>
                         <p className="days-head">Days</p>
                         <p className="hint-head">Hint</p>
+                        <p className="action-head">Action</p>
                     </li>
                     {data.map((item) => (
                         <li 
