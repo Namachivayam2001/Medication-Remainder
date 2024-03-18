@@ -8,7 +8,7 @@ export default () => {
 
     const navigate = useNavigate();
     const user_values = useUserContext();
-    const {user, setUser} = user_values;
+    const {user} = user_values;
 
     const [values, setValues] = useState({
         user_id: user ? user.id : '',
@@ -35,7 +35,7 @@ export default () => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
-            setErrors(() => validate(values));
+            setErrors(() => validate(values, user));
             if (Object.keys(validate(values)).length === 0) {
                 const response = await axios.post('http://localhost:3030/schedule/form', {
                     headers: {
@@ -43,12 +43,12 @@ export default () => {
                         'values': `${JSON.stringify(values)}`
                     }
                 });
-                if(response.data.inserted){
+                if(response.data.repeat === true){
+                    alert('schedule already exist at same time')
+                } if(response.data.inserted){
                     //setUser(user);
                     alert('form submited successfully');
                     navigate('/schedule/data'); 
-                } else {
-                    alert('Schedule already exist, please Schedule a new one');
                 }            
             }                 
         } catch (error) {

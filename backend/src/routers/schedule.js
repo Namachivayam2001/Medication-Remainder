@@ -9,6 +9,7 @@ const verifySchedulesToken = require('../../middleware/verifySchedulesToken');
 const verifyNewScheduleToken = require('../../middleware/verifyNewScheduleToken');
 const verifyDeleteToken = require('../../middleware/verifyDeleteToken');
 const jwt = require('jsonwebtoken');
+const checkTimeRepeat = require('../db/check-repeat-data');
 require('dotenv').config();
 const secret_key = process.env.secret_key;
 
@@ -25,7 +26,12 @@ router.post('/form', verifyNewScheduleToken, async (req, res) => {
             notification,
         } = JSON.parse(req.body.headers['values']);
 
-        await schedule(tabel_name, tableDefinition, {
+        await checkTimeRepeat(tabel_name, {
+            user_id, 
+            time, 
+        }) 
+        ? res.status(200).json({repeat: true})
+        : await schedule(tabel_name, tableDefinition, {
             user_id, 
             time, 
             days, 

@@ -5,9 +5,9 @@ module.exports = async (tableName, data) => {
         const connection = await pool.getConnection();
         var [rows] = await connection.query(`
             SELECT COUNT(*) as count FROM ${tableName} 
-            WHERE time = ?`, 
-            [data.time]
-        );      
+            WHERE time = ? AND user_id = ?`, 
+            [data.time, data.user_id]
+        );       
         connection.release();
         const count = rows[0].count;
         console.log('Number of matching records:', count);
