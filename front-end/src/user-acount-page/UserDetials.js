@@ -1,15 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useUserContext } from '../userContext';
 import { useNavigate } from 'react-router-dom';
-import FeatureDropDown from './FeatureDropDown';
 import './userDetials.css';
 
 const UserDetials = () => {
-    const [dropDown, setDropDown] = useState(false);
-    const toggleFeatures = () => {
-        setDropDown(!dropDown);
-    }
-
     const user_values = useUserContext();
     const {user, setUser} = user_values;
     const navigate = useNavigate()
@@ -31,13 +25,7 @@ const UserDetials = () => {
             <p id='dob'><b>DOB : </b>{year}-{month}-{day}</p>
             <p id='email'><b>Email : </b>{user.email}</p>
             <p id='guardian_email'><b>Guardian Email : </b>{user.guardian_email}</p>
-            <div className='features-login'>
-                <div>
-                    <button id='features' onClick={() => toggleFeatures()}>Features</button>
-                    {dropDown && <FeatureDropDown/>}
-                </div>
-                <button id='logout' onClick={() => logOut('token')}>Logout</button>
-            </div>
+            <button id='logout' onClick={() => logOut('token')}>Logout</button>
         </div>
     )
 }
