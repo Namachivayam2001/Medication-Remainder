@@ -10,10 +10,40 @@
 }
 
 #logout{
-    padding: 3px;
+    height: 30px;
+    padding: 5px;
     border-radius: 5px;
     font-weight: bold;
     color: red;
     border: 2px solid red;
     background-color: #fff;
+}
+
+.features-login{
+    padding: 5px;
+    display: flex;
+    gap: 10px;
+}
+
+.features-login div button{
+    border-radius: 0px; 
+    padding: 5px 8px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #00000092;
+}
+
+.drop-down{
+    border: 1px solid #000;
+    background-color: #00000092;
+}
+
+.drop-down li{
+    border: 1px solid #000;
+    list-style: none;
+    text-align: center;
+    margin: 5px;
+    background-color: #fff;
+    font-weight: bold;
+    font-size: medium;
 }
