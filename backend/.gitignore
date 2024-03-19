@@ -2,9 +2,7 @@
 
 # dependencies
 /node_modules
-/backend/logs
-/backend/node_modules
-/front-end/node_modules
+/logs
 /.pnp
 .pnp.js
 .vscode
