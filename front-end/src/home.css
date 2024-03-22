@@ -22,7 +22,7 @@
   list-style: none;
   display: block;
   padding: 5px 10px;
-  width: 100%;
+  width: 150px;
   text-align: center;
   font-weight: bold;
 }
@@ -43,7 +43,7 @@ li:hover{
   cursor: pointer;
 }
 
-.contact-icon, .login-icon{
+.contact-icon, .login-icon, .features-icon{
   border-left: 2px solid #fff;
 }
 
@@ -237,3 +237,69 @@ img{
   gap: 10px;
 }
 
+
+/*......................................................................................................*/
+/* Dropdown Styles */
+.dropdown {
+    position: fixed;
+    top: 55px; /* Position below the login/signup link */
+    right: 160px; /* Center horizontally */
+    list-style-type: none;
+    padding: 10;
+    background-color: #fff; /* Background color of the dropdown */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Ensure the dropdown appears above other content */
+    width: fit-content; /* Adjust width as needed */
+	box-shadow: 1px 1px 3px ;	
+}
+
+.dropdown li {
+    text-align: center;
+	width: 145px;
+}
+
+.dropdown li a {
+    color: #333; /* Link color */
+	padding: 10px;
+    text-decoration: none;
+	width: 100%;
+	display: block;
+}
+
+.dropdown li a:hover {
+    background-color: #f4f4f4; /* Hover background color */
+}
+
+/*......................................................................................................*/
+
+.Featuredropdown{
+	position: fixed;
+    top: 55px; /* Position below the login/signup link */
+    right: 8px; /* Center horizontally */
+    list-style-type: none;
+    padding: 10;
+    background-color: #fff; /* Background color of the dropdown */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Ensure the dropdown appears above other content */
+    width: fit-content; /* Adjust width as needed */
+	box-shadow: 1px 1px 3px ;
+}
+
+.Featuredropdown li {
+    text-align: center;
+	width: 145px;
+}
+
+.Featuredropdown li a {
+    color: #333; /* Link color */
+	padding: 10px;
+    text-decoration: none;
+	width: 100%;
+	display: block;
+}
+
+.Featuredropdown li a:hover {
+    background-color: #f4f4f4; /* Hover background color */
+}
