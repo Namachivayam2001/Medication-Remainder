@@ -48,7 +48,7 @@ function Header() {
         {isFeatureOpen && (
             <ul className="Featuredropdown">
                 <li>
-                    <Link to="" ><small>Add/Eddit</small> Obesity Level</Link>
+                    <Link to="/obesity" ><small>Add/Eddit</small> Obesity Level</Link>
                 </li>
                 <li>
                     <Link to="" >Feature 2</Link>

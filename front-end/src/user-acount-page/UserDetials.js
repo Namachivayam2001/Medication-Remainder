@@ -22,6 +22,7 @@ const UserDetials = () => {
     return(
         <div className='userDetials'>
             <p id='user_name'><b>User Name : </b>{user.first_name} {user.last_name}</p>
+            <p id='age'><b>Age : </b>{user.age}</p>
             <p id='dob'><b>DOB : </b>{year}-{month}-{day}</p>
             <p id='email'><b>Email : </b>{user.email}</p>
             <p id='guardian_email'><b>Guardian Email : </b>{user.guardian_email}</p>

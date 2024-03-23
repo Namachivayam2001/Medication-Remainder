@@ -3,3 +3,5 @@ numpy
 scikit-learn
 datetime
 flask
+python-dotenv
+pyjwt

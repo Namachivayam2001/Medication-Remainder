@@ -5,7 +5,7 @@ import validate from '../utils/validateRegistorForm'
 
 export default () => {
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
 
     const [values, setValues] = useState({
         first_name: '',
@@ -48,5 +48,10 @@ export default () => {
         }
     }
 
-    return {handleChange, values, handleSubmit, errors};
+    return {
+        handleChange, 
+        values, 
+        handleSubmit, 
+        errors
+    };
 }
