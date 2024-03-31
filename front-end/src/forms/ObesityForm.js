@@ -29,8 +29,8 @@ const ObesityForm = () => {
                     <input 
                         className='obes_input'
                         type='number'
-                        value={values.height}
-                        name='height'
+                        value={values.Height}
+                        name='Height'
                         placeholder='Enter the Height in meters'
                         onChange={(e) => handleChange(e)}
                         style={{
@@ -54,8 +54,8 @@ const ObesityForm = () => {
                     <input 
                         className='obes_input'
                         type='number'
-                        value={values.weight}
-                        name='weight'
+                        value={values.Weight}
+                        name='Weight'
                         placeholder='Enter the Weight'
                         onChange={(e) => handleChange(e)}
                         style={{

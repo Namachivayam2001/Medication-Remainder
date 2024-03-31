@@ -2,8 +2,7 @@ import {useState} from 'react';
 import { useUserContext } from '../userContext';
 import validate from '../utils/validateObesityForm';
 import axios from 'axios';
-
-
+import { jwtDecode } from "jwt-decode";
 
 export default () => {
 
@@ -50,7 +49,8 @@ export default () => {
                 const response = await axios.post('http://localhost:5000/obesity', {
                     data: values
                 });
-                console.log(response);          
+                const decodedData = jwtDecode(response.data);
+                console.log(decodedData);          
             } 
         } catch (error) {
             console.error('Error posting data:', error);

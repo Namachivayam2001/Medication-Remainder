@@ -1,14 +1,14 @@
 export default (values) => {
 
     let errors = {};
-    const height = values.height.trim();
-    const weight = values.weight.trim();
+    const Height = values.Height.trim();
+    const Weight = values.Weight.trim();
     const FCVC = values.FCVC.trim();
     const NCP = values.NCP.trim();
     const FAF = values.FAF.trim();
     const CH2O = values.CH2O.trim();
     const TUE = values.TUE.trim();
-    const family_history_with_over_weight = values.family_history_with_over_weight.trim();
+    const family_history_with_overweight = values.family_history_with_overweight.trim();
     const FAVC = values.FAVC.trim();
     const SCC = values.SCC.trim();
     const CALC = values.CALC.trim();
@@ -17,15 +17,15 @@ export default (values) => {
     const SMOKE = values.SMOKE.trim();
     const Gender = values.Gender.trim();
     
-    ! height
-        ? errors.height = 'height required'
-        : !(height <= 2 && height >= 0.5)
-            && (errors.height = 'Range of Height must be 0.5 to 2 meters')
+    ! Height
+        ? errors.Height = 'height required'
+        : !(Height <= 2 && Height >= 0.5)
+            && (errors.Height = 'Range of Height must be 0.5 to 2 meters')
 
-    ! weight
-        ? errors.weight = 'weight required'
-        : !(weight <= 300 && weight >= 15)
-            && (errors.weight = 'Range of weight must be 15 to 300 Kg')
+    ! Weight
+        ? errors.Weight = 'weight required'
+        : !(Weight <= 300 && Weight >= 15)
+            && (errors.Weight = 'Range of weight must be 15 to 300 Kg')
             
     ! FCVC
         ? errors.FCVC = 'FCVC required'
@@ -52,8 +52,8 @@ export default (values) => {
         : !(TUE <= 24 && TUE >= 0)
             && (errors.TUE = 'Range of using technology must be 0 to 24 hours')
 
-    ! family_history_with_over_weight
-        && (errors.family_history_with_over_weight = 'Select YES or NO')
+    ! family_history_with_overweight
+        && (errors.family_history_with_overweight = 'Select YES or NO')
 
     ! FAVC
         && (errors.FAVC = 'Select YES or NO')
