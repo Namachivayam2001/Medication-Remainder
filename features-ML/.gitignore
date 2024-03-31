@@ -8,6 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+obes-venv/
 build/
 develop-eggs/
 dist/

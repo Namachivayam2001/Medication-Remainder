@@ -8,7 +8,7 @@ require('dotenv').config();
 const secret_key = process.env.secret_key;
 
 const tabel_name = "_users";
-const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(100), last_name VARCHAR(100), dob DATE, email VARCHAR(255), guardian_email VARCHAR(255), password VARCHAR(255)';
+const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(100), last_name VARCHAR(100), age INT, dob DATE, email VARCHAR(255), guardian_email VARCHAR(255), password VARCHAR(255)';
 
 router.post('/registor', async (req, res) => {
     try{
@@ -19,6 +19,7 @@ router.post('/registor', async (req, res) => {
             email,
             guardian_email,
             password,
+            age,
         } = req.body;
 
         const response = await schedule(tabel_name, tableDefinition, {
@@ -28,6 +29,7 @@ router.post('/registor', async (req, res) => {
             email,
             guardian_email,
             password,
+            age,
         });
         res.status(200).json(response);
         console.log(response);
@@ -45,7 +47,6 @@ router.post('/login', async (req, res) => {
         
         if (userExist.match_email && userExist.match_password) {
             const userRecord = await fetchData(tabel_name, { email, password });
-
             // Generate JWT token
             const token = jwt.sign(userRecord, secret_key);
 

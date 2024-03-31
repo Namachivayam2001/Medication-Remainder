@@ -1,7 +1,9 @@
 import {useState} from 'react';
 import { useUserContext } from '../userContext';
-import validate from '../utils/validateObesityForm'
+import validate from '../utils/validateObesityForm';
 import axios from 'axios';
+
+
 
 export default () => {
 
@@ -14,14 +16,14 @@ export default () => {
         userId: user.id,
         Age: user.age,
         Gender: '',
-        height: '',
-        weight: '',
+        Height: '', 
+        Weight: '',
         FCVC: '',
         NCP: '',
         FAF: '',
         CH2O: '',
         TUE: '',
-        family_history_with_over_weight: '',
+        family_history_with_overweight: '',
         FAVC: '',
         SCC: '',
         CALC: '',
@@ -35,7 +37,7 @@ export default () => {
         setValues((preValue) => {
             return({
                 ...preValue,
-                [name]: value,
+                [name]: value.trim()
             });
         });        
     }
@@ -45,7 +47,9 @@ export default () => {
             e.preventDefault();
             setErrors(() => validate(values));
             if (Object.keys(validate(values)).length === 0) {
-                const response = await axios.post('http://localhost:5000/obesity', values);
+                const response = await axios.post('http://localhost:5000/obesity', {
+                    data: values
+                });
                 console.log(response);          
             } 
         } catch (error) {

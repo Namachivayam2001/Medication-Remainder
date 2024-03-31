@@ -5,3 +5,6 @@ datetime
 flask
 python-dotenv
 pyjwt
+flask_cors 
+mysql-connector-python
+xgboost

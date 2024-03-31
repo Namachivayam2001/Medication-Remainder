@@ -150,7 +150,7 @@ const ObesityForm = () => {
                         htmlFor='CH2O'
                     >
                         CH2O*
-                    </label>
+                    </label> 
                     <input 
                         className='obes_input'
                         type='number'
@@ -175,7 +175,7 @@ const ObesityForm = () => {
                         htmlFor='TUE'
                     >
                         TUE*
-                    </label>
+                    </label> 
                     <input 
                         className='obes_input'
                         type='number'
@@ -232,8 +232,8 @@ const ObesityForm = () => {
                     <select 
                         className='obes_input'
                         id='obes_family_history_select'
-                        name="family_history_with_over_weight"             
-                        value={values.family_history_with_over_weight} 
+                        name="family_history_with_overweight"             
+                        value={values.family_history_with_overweight} 
                         onChange={(e) => handleChange(e)}
                         style={{
                             borderColor: errors.family_history_with_over_weight && 'red',
@@ -421,6 +421,14 @@ const ObesityForm = () => {
                             && <span className='obes_error_msg'>{errors.SMOKE}</span>                        
                     }
                 </div>
+                <div className='submit-buttob-container'>
+                    <button 
+                        className='obesity-submit-button'
+                        type='submit'
+                    >
+                        Submit
+                    </button>
+                </div>                 
             </form>
         </div>
     )

@@ -28,17 +28,6 @@ export default () => {
         });
     } 
 
-    const calculateAge = (dob) => {
-        const dobDate = new Date(dob);
-        const today = new Date();
-        let age = today.getFullYear() - dobDate.getFullYear();
-        const monthDiff = today.getMonth() - dobDate.getMonth();
-        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dobDate.getDate())) {
-            age--;
-        }
-        return age;
-    };
-
     const handleSubmit = async(e) => {
         try {
             e.preventDefault();
@@ -54,7 +43,6 @@ export default () => {
                     const token = response.data;
                     const userData = jwtDecode(token);
                     localStorage.setItem('token', JSON.stringify(token));
-                    const age = calculateAge(userData.dob);
 
                     setUser((pre) => ({
                         ...pre, 
@@ -64,7 +52,7 @@ export default () => {
                         first_name: userData.first_name,
                         guardian_email: userData.guardian_email,
                         last_name: userData.last_name,
-                        age: age,
+                        age: userData.age,
                     }));
                     navigate('/');
                 }
