@@ -48,7 +48,7 @@ router.post('/form', verifyNewScheduleToken, async (req, res) => {
 
 router.get('/data', verifySchedulesToken, async (req, res) => {    
     const user_id = req.userId;
-    await fetchData(tabel_name, user_id)
+    await fetchData(tabel_name, user_id, tableDefinition)
     .then(data => {
         const token = jwt.sign({schedules: data}, secret_key);
         res.header('user_schedules', token).json(token);

@@ -1,6 +1,9 @@
 import './scheduleForm.css';
 import Header from '../home-page/Header';
 import useForm from '../hooks/useScheduleForm';
+import { useUserContext } from '../userContext';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function ScheduleForm() {
 
@@ -10,6 +13,17 @@ function ScheduleForm() {
         handleSubmit, 
         errors
     } = useForm();
+
+    const navigate = useNavigate(); 
+    const user_values = useUserContext();
+    const {user} = user_values;
+
+    useEffect(() => {
+        if(!user){
+            alert("You'r not a login user, Please Login!")
+            navigate("/login")
+        }
+    }, []);
 
     return (
       <div className="schedule-form-container">

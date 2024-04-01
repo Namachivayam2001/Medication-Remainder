@@ -35,7 +35,6 @@ export default () => {
 
             if (Object.keys(validate(values)).length === 0 && user === null) {
                 const response = await axios.post('http://localhost:3030/users/login', values);
-                console.log(response);
                 if(response.data.status ===  'Login Fail'){
                     setErrors((prevErrors) => ({ ...prevErrors, email: 'incorrect Email or password please registor', password: 'incorrect Email or password please registor' }));
                     
@@ -53,6 +52,7 @@ export default () => {
                         guardian_email: userData.guardian_email,
                         last_name: userData.last_name,
                         age: userData.age,
+                        Obesity_level: userData.Obesity_level
                     }));
                     navigate('/');
                 }

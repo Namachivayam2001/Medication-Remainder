@@ -58,8 +58,6 @@ export default () => {
         try {
             e.preventDefault();
 
-            console.log(values)
-
             setErrors(() => validate(values));
 
             if (Object.keys(validate(values)).length === 0) {

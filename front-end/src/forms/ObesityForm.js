@@ -1,5 +1,8 @@
 import Header from '../home-page/Header';
 import useObesityForm from '../hooks/useObesityForm';
+import { useUserContext } from '../userContext';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ObesityForm = () => {
 
@@ -10,6 +13,16 @@ const ObesityForm = () => {
         errors
     } = useObesityForm();
 
+    const navigate = useNavigate(); 
+    const user_values = useUserContext();
+    const {user} = user_values;
+
+    useEffect(() => {
+        if(!user){
+            alert("You'r not a login user, Please Login!")
+            navigate("/login")
+        }
+    }, []);
     return(
         <div className='obesityForm-container'>
             <Header />
@@ -385,7 +398,7 @@ const ObesityForm = () => {
                     >
                         <option value="">Select...</option>
                         <option value="Bicycle">Bicycle</option>
-                        <option value="Bike">Bike</option>                        
+                        <option value="Walking">Walking</option>                        
                         <option value="2 or 4 wheeler">2 or 4 wheeler</option>
                     </select>
                     {

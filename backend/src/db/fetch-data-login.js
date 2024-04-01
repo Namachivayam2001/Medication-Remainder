@@ -16,7 +16,8 @@ module.exports = async (table_name, data) => {
             dob: rows[0].dob,
             email: rows[0].email,
             guardian_email: rows[0].guardian_email,
-            age: rows[0].age
+            age: rows[0].age,
+            Obesity_level: rows[0].Obesity_level
         };
         console.log('User record:', userRecord);
         return userRecord;

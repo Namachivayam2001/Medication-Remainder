@@ -3,12 +3,14 @@ const router = express.Router()
 const schedule = require('../db/registor-schedule')
 const isUserExist = require('../db/check-login-data')
 const fetchData = require('../db/fetch-data-login')
+const verifyNotificationToken = require('../../middleware/verifyNotificationToken')
+const updateObesityLevel = require("../db/update-obesity-level")
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const secret_key = process.env.secret_key;
 
 const tabel_name = "_users";
-const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(100), last_name VARCHAR(100), age INT, dob DATE, email VARCHAR(255), guardian_email VARCHAR(255), password VARCHAR(255)';
+const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(100), last_name VARCHAR(100), age INT, dob DATE, email VARCHAR(255), guardian_email VARCHAR(255), password VARCHAR(255), Obesity_level VARCHAR(255)';
 
 router.post('/registor', async (req, res) => {
     try{
@@ -62,5 +64,16 @@ router.post('/login', async (req, res) => {
         res.status(500).json({error: 'Internal Server Error'})
     }
 })
+
+router.put('/Obesity_level',verifyNotificationToken, async (req, res) => {
+    const userId = req.userId;
+    const Obesity_level = req.body.headers.Obesity_level;
+
+    await updateObesityLevel(tabel_name, Obesity_level, userId)
+    .catch(error => {
+        res.status(500).json({error: `Internal Server Error ${error}`});
+    });
+    res.status(200).json({message: "Obesity_level updated successfully"})
+});
 
 module.exports = router;
