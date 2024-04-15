@@ -6,6 +6,7 @@ from components.obes_prediction import predict
 import jwt
 from dotenv import load_dotenv
 import os
+from components.pneumonia_predict import pneumonia_prd
 
 # Load variables from the .env file
 load_dotenv()
@@ -38,6 +39,19 @@ def obesity():
             return jsonify({'error': 'Data key not found in request'}), 400
     else:
         return jsonify({'error': 'Method not allowed'}), 405
+
+
+@app.route('/pneumonia', methods=['POST'])
+def pneumonia():
+    if 'image' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    file = request.files['image']
+
+    # predict the class usint file 
+    prd_class = pneumonia_prd(file)
+
+    return jsonify({'prd_class': prd_class}), 200
+
 
 if __name__ == "__main__":
     app.run(debug=True)

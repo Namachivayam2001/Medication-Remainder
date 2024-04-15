@@ -51,7 +51,7 @@ function Header() {
                     <Link to="/obesity" ><small>Add/Eddit</small> Obesity Level</Link>
                 </li>
                 <li>
-                    <Link to="" >Feature 2</Link>
+                    <Link to="/pneumonia" ><small>Check/Eddit</small> Pneumonia</Link>
                 </li> 
                 <li>
                     <Link to="">Feature 2</Link>

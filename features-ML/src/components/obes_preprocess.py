@@ -1,6 +1,8 @@
 import joblib
 import pandas as pd
 from components.utils import MyLabelEncoder
+from exception import CustomException
+import sys
 
 def per_process(raw_data):        
     try:
@@ -13,4 +15,5 @@ def per_process(raw_data):
         pre_data = preprocessor.transform(df)
         return pre_data
     except Exception as e :
-        print('hi', e)
+        raise CustomException(e, sys)
+ 

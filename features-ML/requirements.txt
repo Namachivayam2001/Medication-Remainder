@@ -8,3 +8,5 @@ pyjwt
 flask_cors 
 mysql-connector-python
 xgboost
+torch
+torchvision

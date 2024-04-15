@@ -1,6 +1,8 @@
 import joblib
 from components.obes_preprocess import per_process
 from components.utils import MyLabelEncoder
+from exception import CustomException
+import sys
 
 def predict(raw_data): 
     try:
@@ -13,4 +15,4 @@ def predict(raw_data):
         print(f'predicted output: {prd_data}')  
         return prd_data
     except Exception as e:
-        print(e)
+        raise CustomException(e, sys)

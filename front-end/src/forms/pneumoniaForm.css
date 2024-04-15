@@ -1,0 +1,45 @@
+.pneumoniaForm-container{
+    background-image: url('../../public/images/v870-tang-37.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pneumoniaForm{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #000;
+    justify-content: space-between; /* or space-around */
+    padding: 20px;
+    width: 400px;
+    height: 80px;
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.pneumoniaForm button{
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid #000;
+}
+
+.fileUpload{
+    display: flex;
+    flex-direction: column;
+}
+
+#pneumoniaError{
+    color: red;
+}
+
+#fileUpload{
+    display: flex;
+    flex-direction: column;
+}
