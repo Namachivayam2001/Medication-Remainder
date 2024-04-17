@@ -7,8 +7,6 @@ const UserDetials = () => {
     const user_values = useUserContext();
     const {user, setUser} = user_values;
     const navigate = useNavigate()
-
-console.log(user)
     
     const date = new Date(user.dob);
     const year = date.getFullYear();
@@ -30,6 +28,10 @@ console.log(user)
             {
                 user.Obesity_level
                     && <p id='Obesity_level'><b>Obesity_level : </b>{user.Obesity_level}</p>
+            }
+            {
+                user.Pneumonia
+                    && <p id='pneumonia'><b>Pneumonia : </b>{user.Pneumonia}</p>
             }
             <button id='logout' onClick={() => logOut('token')}>Logout</button>
         </div>

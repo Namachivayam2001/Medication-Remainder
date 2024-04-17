@@ -52,7 +52,8 @@ export default () => {
                         guardian_email: userData.guardian_email,
                         last_name: userData.last_name,
                         age: userData.age,
-                        Obesity_level: userData.Obesity_level
+                        Obesity_level: userData.Obesity_level,
+                        Pneumonia: userData.Pneumonia
                     }));
                     navigate('/');
                 }

@@ -44,7 +44,7 @@ const ObesityForm = () => {
                         type='number'
                         value={values.Height}
                         name='Height'
-                        placeholder='Enter the Height in meters'
+                        placeholder='Enter the Height in cm'
                         onChange={(e) => handleChange(e)}
                         style={{
                             borderColor: errors.height && 'red',
@@ -52,8 +52,8 @@ const ObesityForm = () => {
                         }}
                     />
                     {
-                        errors.height
-                            && <span className='obes_error_msg'>{errors.height}</span>                        
+                        errors.Height
+                            && <span className='obes_error_msg'>{errors.Height}</span>                        
                     }
                 </div>
                 <div className='obes_weight_div'>
@@ -169,7 +169,7 @@ const ObesityForm = () => {
                         type='number'
                         value={values.CH2O}
                         name='CH2O'
-                        placeholder='Physical activity frequency per day'
+                        placeholder='Water consumption per day'
                         onChange={(e) => handleChange(e)}
                         style={{
                             borderColor: errors.CH2O && 'red',

@@ -7,6 +7,8 @@ import jwt
 from dotenv import load_dotenv
 import os
 from components.pneumonia_predict import pneumonia_prd
+from exception import CustomException
+import sys
 
 # Load variables from the .env file
 load_dotenv()
@@ -17,40 +19,49 @@ CORS(app)  # Enable CORS for all routes
 CORS(app, origins=['http://localhost:3000'])
 
 
-@app.route('/obesity', methods=['POST'])
+@app.route('/Obesity_level', methods=['POST'])
 def obesity():
-    if request.method == 'POST':
-        try:
-            # get the data from request
-            req_data = request.get_json()
-            data = req_data.get('data')
+    try:
+        # get the data from request
+        req_data = request.get_json()
+        data = req_data.get('data')
+        print(f"Obese data recived from client...........")
 
-            # pridict the output by passing the input data to predict methos
-            prd_data = predict(data)
-            print(f'prd_dat: {prd_data}')
-            prd_label = convert_to_label_string(prd_data)
-            prd_data_dict = {'prd_data': prd_label}
+        # pridict the output by passing the input data to predict methos
+        prd_data = predict(data)
 
-            # encode the data 
-            encoded_data = jwt.encode(prd_data_dict, SECRET_KEY, algorithm='HS256') 
-            return jsonify(encoded_data), 200
+        # map the prd_data to the coresponding class
+        prd_label = convert_to_label_string(prd_data)
+        prd_data_dict = {'prd_data': prd_label}
 
-        except KeyError:
-            return jsonify({'error': 'Data key not found in request'}), 400
-    else:
-        return jsonify({'error': 'Method not allowed'}), 405
+        # encode the data 
+        encoded_data = jwt.encode(prd_data_dict, SECRET_KEY, algorithm='HS256') 
+
+        return jsonify(encoded_data), 200   
+     
+    except Exception as e:
+        raise CustomException(e, sys)
 
 
 @app.route('/pneumonia', methods=['POST'])
 def pneumonia():
-    if 'image' not in request.files:
-        return jsonify({'error': 'No file part'}), 400
-    file = request.files['image']
+    try:
+        if 'image' not in request.files:
+            return jsonify({'error': 'No file part'}), 400
+        file = request.files['image']
+        print(f"Pneumonia image readed successfully..........")
 
-    # predict the class usint file 
-    prd_class = pneumonia_prd(file)
+        # predict the class usint file 
+        prd_class = pneumonia_prd(file)
+        prd_class_dict = {'prd_class': prd_class}
 
-    return jsonify({'prd_class': prd_class}), 200
+        # encode the data 
+        encoded_data = jwt.encode(prd_class_dict, SECRET_KEY, algorithm='HS256') 
+        
+        return jsonify(encoded_data), 200
+    
+    except Exception as e:
+        raise CustomException(e, sys)
 
 
 if __name__ == "__main__":

@@ -19,8 +19,8 @@ export default (values) => {
     
     ! Height
         ? errors.Height = 'height required'
-        : !(Height <= 2 && Height >= 0.5)
-            && (errors.Height = 'Range of Height must be 0.5 to 2 meters')
+        : !(Height <= 300 && Height >= 50)
+            && (errors.Height = 'Range of Height must be 50 to 300 cm')
 
     ! Weight
         ? errors.Weight = 'weight required'
@@ -29,8 +29,8 @@ export default (values) => {
             
     ! FCVC
         ? errors.FCVC = 'FCVC required'
-        : !(FCVC <= 10 && FCVC >= 1)
-            && (errors.FCVC = 'vegetables intake must be 1 to 10 Kg')
+        : !(FCVC <= 10 && FCVC >= 0)
+            && (errors.FCVC = 'vegetables intake must be 0 to 10 Kg')
             
     ! NCP
         ? errors.NCP = 'NCP required'

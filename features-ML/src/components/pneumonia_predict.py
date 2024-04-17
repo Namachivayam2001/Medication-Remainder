@@ -1,6 +1,7 @@
 from components.utils import CNN
 from exception import CustomException
 from components.pneumoia_preprocess import preprocess_image
+from logger import logging 
 import torch
 import sys
 
@@ -14,9 +15,11 @@ def pneumonia_prd(file):
 
         # Load the state dict
         state_dict = torch.load('Pneumonia_CNN\model_checkpoints\model_4.pth')
+        print(f"CNN model loded successfully...........")
 
         # Load the state dict into the model
         cnn_model.load_state_dict(state_dict)
+        print(f"state dict is save in curront model successfully..........")
 
         # Set the model to evaluation mode
         cnn_model.eval()
@@ -24,9 +27,11 @@ def pneumonia_prd(file):
         # Perform prediction
         with torch.no_grad():
             prediction = cnn_model(img_tensor)
+            print(f"model predicted successfully..........")
 
         # Get probabilities by applying softmax
         probabilities = torch.softmax(prediction, dim=1)
+        print(f"Check the probability of the output..........")
 
         # Get predicted class index
         predicted_class_index = torch.argmax(probabilities, dim=1).item()

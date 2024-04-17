@@ -1,6 +1,7 @@
 from PIL import Image
 from torchvision import transforms
 import torchvision.transforms as tt
+from logger import logging 
 from exception import CustomException
 import sys
 
@@ -18,9 +19,11 @@ def preprocess_image(file):
 
         # Apply the transformations
         img_tensor = data_transform(img)
+        print(f"data type of image converted into tensor..........")
 
         # Add batch dimension
         img_tensor = img_tensor.unsqueeze(0)
+        print(f"Batch size of image set successfully..........")
 
         return img_tensor
     

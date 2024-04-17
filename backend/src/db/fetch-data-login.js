@@ -17,9 +17,9 @@ module.exports = async (table_name, data) => {
             email: rows[0].email,
             guardian_email: rows[0].guardian_email,
             age: rows[0].age,
-            Obesity_level: rows[0].Obesity_level
+            Obesity_level: rows[0].Obesity_level,
+            Pneumonia: rows[0].Pneumonia
         };
-        console.log('User record:', userRecord);
         return userRecord;
     } catch (error) {
         console.error('Error fetching data:', error);

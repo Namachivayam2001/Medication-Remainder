@@ -10,7 +10,7 @@ export default () => {
     const user_values = useUserContext();
     const {user, setUser} = user_values;
 
-    const navigate = useNavigate()
+    const navigate = useNavigate() 
 
     const [errors, setErrors] = useState({});
 
@@ -46,13 +46,15 @@ export default () => {
 
     const handleSubmit = async (e) => {
         try {
+            console.log('Submission start..........')
             e.preventDefault();
             setErrors(() => validate(values));
+            console.log(errors)
             if (Object.keys(validate(values)).length === 0) {
 
-                if(user){
+                if(user){ 
                     // send the user data to predict obesity level
-                    const response = await axios.post('http://localhost:5000/obesity', {
+                    const response = await axios.post('http://localhost:5000/Obesity_level', {
                         data: values
                     });
                     const decodedData = jwtDecode(response.data);

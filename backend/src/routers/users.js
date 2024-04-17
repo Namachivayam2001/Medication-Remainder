@@ -5,12 +5,13 @@ const isUserExist = require('../db/check-login-data')
 const fetchData = require('../db/fetch-data-login')
 const verifyNotificationToken = require('../../middleware/verifyNotificationToken')
 const updateObesityLevel = require("../db/update-obesity-level")
+const updatePneumonia = require("../db/update-pneumonia")
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const secret_key = process.env.secret_key;
 
 const tabel_name = "_users";
-const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(100), last_name VARCHAR(100), age INT, dob DATE, email VARCHAR(255), guardian_email VARCHAR(255), password VARCHAR(255), Obesity_level VARCHAR(255)';
+const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(100), last_name VARCHAR(100), age INT, dob DATE, email VARCHAR(255), guardian_email VARCHAR(255), password VARCHAR(255), Obesity_level VARCHAR(255), Pneumonia VARCHAR(50)';
 
 router.post('/registor', async (req, res) => {
     try{
@@ -74,6 +75,17 @@ router.put('/Obesity_level',verifyNotificationToken, async (req, res) => {
         res.status(500).json({error: `Internal Server Error ${error}`});
     });
     res.status(200).json({message: "Obesity_level updated successfully"})
+});
+
+router.put('/pneumonia',verifyNotificationToken, async (req, res) => {
+    const userId = req.userId;
+    const pneumonia = req.body.headers.pneumonia;
+
+    await updatePneumonia(tabel_name, pneumonia, userId)
+    .catch(error => {
+        res.status(500).json({error: `Internal Server Error ${error}`});
+    });
+    res.status(200).json({message: "pneumonia updated successfully"})
 });
 
 module.exports = router;
