@@ -14,7 +14,6 @@ function LoginForm() {
 
     return (
         <div className='login-container'>
-            <Header />
             <form
                 method='POST'
                 className='login-form'

@@ -47,7 +47,7 @@ const usePneumoniaForm = () => {
                 const db_response = await axios.put('http://localhost:3030/users/pneumonia',{
                     headers: {
                         'token': `${JSON.parse(localStorage.getItem('token'))}`,
-                        'pneumonia': `${decodedData.prd_class}`
+                        'pneumonia': `${user.Pneumonia}`
                     }
                 })   
 

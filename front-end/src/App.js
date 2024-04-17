@@ -10,6 +10,7 @@ import { useState } from 'react';
 import {jwtDecode} from 'jwt-decode';
 import ObesityForm from './forms/ObesityForm';
 import PneumoniaForm from './forms/PneumoniaForm';
+import Header from './home-page/Header';
 
 function App() {
     const token = localStorage.getItem('token');
@@ -20,7 +21,8 @@ function App() {
     const [user, setUser] = useState(isToken);
 
     return (
-        <userContext.Provider value={{user, setUser}}>
+        <userContext.Provider value={{user, setUser}}>            
+            <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/schedule">

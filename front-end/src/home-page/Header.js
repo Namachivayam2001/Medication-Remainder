@@ -14,11 +14,16 @@ function Header() {
         setIsFeatureOpen(!isFeatureOpen);
     };
 
+    const closeDropdowns = () => {
+        setIsAcountOpen(false);
+        setIsFeatureOpen(false);
+    };
+
     return (
         <>
         <div className="navebar">
                 <p>
-                    <Link to="/" >Medi Remind</Link>
+                    <Link to="/" onClick={closeDropdowns}>Medi Remind</Link>
                 </p>
                 <ul id="nav-right-icons">                                       
                     <li className="login-icon">
@@ -32,29 +37,29 @@ function Header() {
         {isAcountOpen && (
             <ul className="dropdown">
                 <li>
-                    <Link to="/schedule/data" >User Detials</Link>
+                    <Link to="/schedule/data" onClick={closeDropdowns}>User Detials</Link>
                 </li>
                 <li>
-                    <Link to="/schedule/form" >Schedule</Link>
+                    <Link to="/schedule/form" onClick={closeDropdowns}>Schedule</Link>
                 </li> 
                 <li>
-                    <Link to="/login">Login</Link>
+                    <Link to="/login" onClick={closeDropdowns}>Login</Link>
                 </li>
                 <li>
-                    <Link to="/registor">Register</Link>
+                    <Link to="/registor" onClick={closeDropdowns}>Register</Link>
                 </li>
             </ul>
         )}
         {isFeatureOpen && (
             <ul className="Featuredropdown">
                 <li>
-                    <Link to="/obesity" ><small>Add/Eddit</small> Obesity Level</Link>
+                    <Link to="/obesity" onClick={closeDropdowns}><small>Add/Eddit</small> Obesity Level</Link>
                 </li>
                 <li>
-                    <Link to="/pneumonia" ><small>Check/Eddit</small> Pneumonia</Link>
+                    <Link to="/pneumonia" onClick={closeDropdowns}><small>Check/Eddit</small> Pneumonia</Link>
                 </li> 
                 <li>
-                    <Link to="">Feature 2</Link>
+                    <Link to="" onClick={closeDropdowns}>Feature 2</Link>
                 </li>
             </ul>
         )}

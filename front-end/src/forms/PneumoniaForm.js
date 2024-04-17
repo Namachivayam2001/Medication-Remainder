@@ -26,7 +26,6 @@ const Pneumonia = () => {
 
     return(
         <div className="pneumoniaForm-container">
-            <Header />
             <form className="pneumoniaForm" onSubmit={(e) => handleSubmit(e)}>
                 <div id="fileUpload">
                     <input type="file" accept="image/*" onChange={handleFileChange} />

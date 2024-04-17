@@ -34,7 +34,6 @@ function ScheduleList() {
     
     return (
         <>
-            <Header />
             <div 
                 id="scheduleListContainer"
                 className={tableName}

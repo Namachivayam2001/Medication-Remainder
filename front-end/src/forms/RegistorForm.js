@@ -14,7 +14,6 @@ function RegistorForm() {
 
     return (
         <div className='registorForm-container'>
-            <Header />
             <form 
                 className='registorForm'
                 method='POST'

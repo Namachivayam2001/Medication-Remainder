@@ -27,7 +27,6 @@ function ScheduleForm() {
 
     return (
       <div className="schedule-form-container">
-        <Header />
         <form 
             className="scheduleForm" 
             method="POST"

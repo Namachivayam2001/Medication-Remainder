@@ -25,7 +25,6 @@ const ObesityForm = () => {
     }, []);
     return(
         <div className='obesityForm-container'>
-            <Header />
             <form 
                 className='registorForm'
                 method='POST'
