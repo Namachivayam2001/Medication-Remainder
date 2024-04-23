@@ -1,12 +1,12 @@
-import Header from '../home-page/Header';
 import useObesityForm from '../hooks/useObesityForm';
 import { useUserContext } from '../userContext';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './obesityForm.css'
 
 const ObesityForm = () => {
 
-    const {
+    const { 
         handleChange,
         handleSubmit,
         values,
