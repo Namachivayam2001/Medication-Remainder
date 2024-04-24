@@ -35,7 +35,7 @@ def obesity():
         prd_data_dict = {'prd_data': prd_label}
 
         # encode the data 
-        encoded_data = jwt.encode(prd_data_dict, SECRET_KEY, algorithm='HS256') 
+        encoded_data = jwt.encode(prd_data_dict, str(SECRET_KEY), algorithm='HS256') 
 
         return jsonify(encoded_data), 200   
      
@@ -56,7 +56,7 @@ def pneumonia():
         prd_class_dict = {'prd_class': prd_class}
 
         # encode the data 
-        encoded_data = jwt.encode(prd_class_dict, SECRET_KEY, algorithm='HS256') 
+        encoded_data = jwt.encode(prd_class_dict, str(SECRET_KEY), algorithm='HS256') 
         
         return jsonify(encoded_data), 200
     
