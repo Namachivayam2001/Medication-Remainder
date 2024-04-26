@@ -6,12 +6,13 @@ const fetchData = require('../db/fetch-data-login')
 const verifyNotificationToken = require('../../middleware/verifyNotificationToken')
 const updateObesityLevel = require("../db/update-obesity-level")
 const updatePneumonia = require("../db/update-pneumonia")
+const updateDiabetis = require("../db/update-diabeties")
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const secret_key = process.env.secret_key;
 
 const tabel_name = "_users";
-const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(100), last_name VARCHAR(100), age INT, dob DATE, email VARCHAR(255), guardian_email VARCHAR(255), password VARCHAR(255), Obesity_level VARCHAR(255), Pneumonia VARCHAR(50)';
+const tableDefinition = 'id INT AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(100), last_name VARCHAR(100), age INT, dob DATE, email VARCHAR(255), guardian_email VARCHAR(255), password VARCHAR(255), Obesity_level VARCHAR(50), Pneumonia VARCHAR(50), Diabetis VARCHAR(50)';
 
 router.post('/registor', async (req, res) => {
     try{
@@ -25,7 +26,7 @@ router.post('/registor', async (req, res) => {
             age,
         } = req.body;
 
-        const response = await schedule(tabel_name, tableDefinition, {
+        const response = await schedule(tabel_name, {
             first_name,
             last_name,
             dob,
@@ -86,6 +87,17 @@ router.put('/pneumonia',verifyNotificationToken, async (req, res) => {
         res.status(500).json({error: `Internal Server Error ${error}`});
     });
     res.status(200).json({message: "pneumonia updated successfully"})
+});
+
+router.put('/Diabetis',verifyNotificationToken, async (req, res) => {
+    const userId = req.userId;
+    const Diabetis = req.body.headers.Diabetis;
+
+    await updateDiabetis(tabel_name, Diabetis, userId)
+    .catch(error => {
+        res.status(500).json({error: `Internal Server Error ${error}`});
+    });
+    res.status(200).json({message: "Diabetis updated successfully"})
 });
 
 module.exports = router;

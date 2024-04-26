@@ -4,15 +4,20 @@ from components.utils import MyLabelEncoder
 from exception import CustomException
 from logger import logging 
 import sys
+import os
 
-def per_process(raw_data):        
+def pre_process(raw_data):        
     try:
         data = [
             raw_data
         ]
         df = pd.DataFrame(data)
         print('obes Dataframe created..........')
-        preprocessor = joblib.load( 'playground-series-s4e2 (Obisity_pridiction)/preprocessor.pkl')
+
+        # set path of .pkl file
+        path = os.path.realpath(r'../playground-series-s4e2 (Obisity_pridiction)/preprocessor.pkl')
+
+        preprocessor = joblib.load(path)
         print(f"obes preprocessor loded successfully..........")
         pre_data = preprocessor.transform(df)
         print(f"obes dataFrame preprocessed successfully..........")

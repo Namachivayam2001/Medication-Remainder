@@ -53,13 +53,13 @@ function Header() {
         {isFeatureOpen && (
             <ul className="Featuredropdown">
                 <li>
-                    <Link to="/obesity" onClick={closeDropdowns}><small>Add/Eddit</small> Obesity Level</Link>
+                    <Link to="/obesity" onClick={closeDropdowns}><small>Check</small> Obesity Level</Link>
                 </li>
                 <li>
-                    <Link to="/pneumonia" onClick={closeDropdowns}><small>Check/Eddit</small> Pneumonia</Link>
+                    <Link to="/pneumonia" onClick={closeDropdowns}><small>Check</small> Pneumonia</Link>
                 </li> 
                 <li>
-                    <Link to="" onClick={closeDropdowns}>Feature 2</Link>
+                    <Link to="/Diabetis" onClick={closeDropdowns}><small>Check</small> Diabetes</Link>
                 </li>
             </ul>
         )}

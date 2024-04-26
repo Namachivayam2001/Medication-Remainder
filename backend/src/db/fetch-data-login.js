@@ -18,7 +18,8 @@ module.exports = async (table_name, data) => {
             guardian_email: rows[0].guardian_email,
             age: rows[0].age,
             Obesity_level: rows[0].Obesity_level,
-            Pneumonia: rows[0].Pneumonia
+            Pneumonia: rows[0].Pneumonia,
+            Diabetis: rows[0].Diabetis,
         };
         return userRecord;
     } catch (error) {

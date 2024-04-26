@@ -35,23 +35,22 @@ const usePneumoniaForm = () => {
                 // decode the token from pyton server
                 const decodedData = jwtDecode(response.data);
 
-                // set the Obesity level in user
-                setUser((pre) => {
-                    return({
-                        ...pre,
-                        Pneumonia: (decodedData.prd_class === 'normal') ? 'No' : 'Yes'
-                    })
-                })
-
                 // update the Pneumonia in the _users table
                 const db_response = await axios.put('http://localhost:3030/users/pneumonia',{
                     headers: {
                         'token': `${JSON.parse(localStorage.getItem('token'))}`,
-                        'pneumonia': `${user.Pneumonia}`
+                        'pneumonia': `${decodedData.prd_class}`
                     }
-                })   
-
+                })
+                                   
                 if(db_response.data.message === 'pneumonia updated successfully'){
+                    // set the Pneumonia in user
+                    setUser((pre) => {
+                        return({
+                            ...pre,
+                            Pneumonia: decodedData.prd_class
+                        })
+                    })
                     alert("Check Pneumonia sucessfully")
                     console.log('Pneumonia updated successfully...........')
                     navigate('/schedule/data');

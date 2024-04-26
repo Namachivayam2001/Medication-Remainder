@@ -53,7 +53,8 @@ export default () => {
                         last_name: userData.last_name,
                         age: userData.age,
                         Obesity_level: userData.Obesity_level,
-                        Pneumonia: userData.Pneumonia
+                        Pneumonia: userData.Pneumonia,
+                        Diabetis: userData.Diabetis
                     }));
                     navigate('/');
                 }

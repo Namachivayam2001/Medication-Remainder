@@ -4,6 +4,7 @@ from components.pneumoia_preprocess import preprocess_image
 from logger import logging 
 import torch
 import sys
+import os
 
 def pneumonia_prd(file):
     try:
@@ -13,8 +14,11 @@ def pneumonia_prd(file):
         # Instantiate the CNN model
         cnn_model = CNN()
 
+        # set path of .pkl file
+        path = os.path.realpath(r"../Pneumonia_CNN/model_checkpoints/model_4.pth")
+
         # Load the state dict
-        state_dict = torch.load('Pneumonia_CNN\model_checkpoints\model_4.pth')
+        state_dict = torch.load(path)
         print(f"CNN model loded successfully...........")
 
         # Load the state dict into the model
@@ -38,9 +42,9 @@ def pneumonia_prd(file):
 
         # Assuming 0 represents 'normal' and 1 represents 'pneumonia'
         if predicted_class_index == 0:
-            predicted_class = 'normal'
+            predicted_class = 'NO'
         else:
-            predicted_class = 'pneumonia'
+            predicted_class = 'YES'
 
         return predicted_class
     

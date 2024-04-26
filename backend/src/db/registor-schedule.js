@@ -1,14 +1,12 @@
-const createTableIfNotExists = require('./create-tabel.js');
 const insertData = require('./insert-record.js');
 const isRepeat = require('./check-registor-data.js')
 
-module.exports = async (tabel_name, tableDefinition, data) => {
+module.exports = async (tabel_name, data) => {
     try {
-        const connection = await createTableIfNotExists(tabel_name, tableDefinition);
         const response = await isRepeat(tabel_name, data);
 
         if(!response.email_repeat){
-            await insertData(tabel_name, data, connection);
+            await insertData(tabel_name, data);
             return({
                 email_repeat: response.email_repeat,
             })

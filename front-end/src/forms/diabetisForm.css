@@ -1,0 +1,41 @@
+.diabetis-container{
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;background-image: url('../../public/images/v870-tang-37.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.diabetis-container div{
+    display: flex;
+    flex-direction: column;
+}
+.diabetis-container input{    
+    margin: 5px 0px 0px;
+    padding: 6px;
+    font-size: medium;
+    border: 1.3px solid #000;
+}
+.diabetis-container input:focus {
+    outline: none;
+}
+.diabetis-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    width: 600px;
+    margin: 0px auto;
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 100px 0px;
+}
+.diabetis-error-message{
+    font-size: small;
+    color: red;
+}

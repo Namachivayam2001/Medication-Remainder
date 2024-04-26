@@ -46,7 +46,7 @@ export default () => {
 
     const handleSubmit = async (e) => {
         try {
-            console.log('Submission start..........')
+            console.log(' Obesity Submission start..........')
             e.preventDefault();
             setErrors(() => validate(values));
             console.log(errors)
@@ -57,15 +57,8 @@ export default () => {
                     const response = await axios.post('http://localhost:5000/Obesity_level', {
                         data: values
                     });
-                    const decodedData = jwtDecode(response.data);
 
-                    // set the Obesity level in user
-                    setUser((pre) => {
-                        return({
-                            ...pre,
-                            Obesity_level: decodedData.prd_data
-                        })
-                    })
+                    const decodedData = jwtDecode(response.data);
 
                     // update the obesity level in the _users table
                     const db_response = await axios.put('http://localhost:3030/users/Obesity_level',{
@@ -73,10 +66,17 @@ export default () => {
                             'token': `${JSON.parse(localStorage.getItem('token'))}`,
                             'Obesity_level': `${decodedData.prd_data}`
                         }
-                    })   
+                    })                    
 
                     if(db_response.data.message === 'Obesity_level updated successfully'){
-                        console.log('Obesity_level updated successfully...........')
+                        // set the Obesity level in user
+                        setUser((pre) => {
+                            return({
+                                ...pre,
+                                Obesity_level: decodedData.prd_data
+                            })
+                        }) 
+                        alert('Obesity_level check successfully')
                         navigate('/schedule/data');
                     }
                 } else {

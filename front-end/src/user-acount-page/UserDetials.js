@@ -33,6 +33,10 @@ const UserDetials = () => {
                 user.Pneumonia
                     && <p id='pneumonia'><b>Pneumonia : </b>{user.Pneumonia}</p>
             }
+            {
+                user.Diabetis
+                    && <p id='Diabetis'><b>Diabetis : </b>{user.Diabetis}</p>
+            }
             <button id='logout' onClick={() => logOut('token')}>Logout</button>
         </div>
     )

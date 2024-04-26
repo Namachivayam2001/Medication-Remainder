@@ -30,6 +30,7 @@ const ObesityForm = () => {
                 method='POST'
                 onSubmit={(e) => handleSubmit(e)}
             >
+                <h1>Obesity Form</h1>
                 <div className='obes_height_div'>
                     <label 
                         className='obes_label'
@@ -46,8 +47,8 @@ const ObesityForm = () => {
                         placeholder='Enter the Height in cm'
                         onChange={(e) => handleChange(e)}
                         style={{
-                            borderColor: errors.height && 'red',
-                            boxShadow: errors.height && '0 0 5px rgba(225, 0, 0, 0.8)'
+                            borderColor: errors.Height && 'red',
+                            boxShadow: errors.Height && '0 0 5px rgba(225, 0, 0, 0.8)'
                         }}
                     />
                     {
@@ -71,13 +72,13 @@ const ObesityForm = () => {
                         placeholder='Enter the Weight'
                         onChange={(e) => handleChange(e)}
                         style={{
-                            borderColor: errors.weight && 'red',
-                            boxShadow: errors.weight && '0 0 5px rgba(225, 0, 0, 0.8)'
+                            borderColor: errors.Weight && 'red',
+                            boxShadow: errors.Weight && '0 0 5px rgba(225, 0, 0, 0.8)'
                         }}
                     />
                     {
-                        errors.weight
-                            && <span className='obes_error_msg'>{errors.weight}</span>                        
+                        errors.Weight
+                            && <span className='obes_error_msg'>{errors.Weight}</span>                        
                     }
                 </div>
                 <div className='obes_FCVC_div'>
@@ -248,8 +249,8 @@ const ObesityForm = () => {
                         value={values.family_history_with_overweight} 
                         onChange={(e) => handleChange(e)}
                         style={{
-                            borderColor: errors.family_history_with_over_weight && 'red',
-                            boxShadow: errors.family_history_with_over_weight && '0 0 5px rgba(225, 0, 0, 0.8)'
+                            borderColor: errors.family_history_with_overweight && 'red',
+                            boxShadow: errors.family_history_with_overweight && '0 0 5px rgba(225, 0, 0, 0.8)'
                         }}
                     >
                         <option value="">Select...</option>
@@ -257,8 +258,8 @@ const ObesityForm = () => {
                         <option value="no">No</option>
                     </select>
                     {
-                        errors.family_history_with_over_weight
-                            && <span className='obes_error_msg'>{errors.family_history_with_over_weight}</span>                        
+                        errors.family_history_with_overweight
+                            && <span className='obes_error_msg'>{errors.family_history_with_overweight}</span>                        
                     }
                 </div>
                 <div className='obes_FAVC_div'>
@@ -433,14 +434,12 @@ const ObesityForm = () => {
                             && <span className='obes_error_msg'>{errors.SMOKE}</span>                        
                     }
                 </div>
-                <div className='submit-buttob-container'>
                     <button 
                         className='obesity-submit-button'
                         type='submit'
                     >
                         Submit
-                    </button>
-                </div>                 
+                    </button>               
             </form>
         </div>
     )

@@ -52,7 +52,7 @@ export default (values) => {
         : !(TUE <= 24 && TUE >= 0)
             && (errors.TUE = 'Range of using technology must be 0 to 24 hours')
 
-    ! family_history_with_overweight
+    family_history_with_overweight === 'Select...'
         && (errors.family_history_with_overweight = 'Select YES or NO')
 
     ! FAVC

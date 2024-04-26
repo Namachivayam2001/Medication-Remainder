@@ -1,17 +1,17 @@
 const pool = require('./connection.js');
 
-module.exports = async (table_name, Pneumonia, user_id) => {
+module.exports = async (table_name, Diabeties, user_id) => {
     try {
         const connection = await pool.getConnection();
         await connection.query(`
             UPDATE ${table_name}
-            SET Pneumonia = ?
+            SET Diabetis = ?
             WHERE id = ${user_id}`, 
-            [Pneumonia]
+            [Diabeties]
         );
-        console.log('Pneumonia updated succesfully..........')
+        console.log('Diabeties updated succesfully..........')
         connection.release();
     } catch (error) {
-        console.error('Error updating Pneumonia data:', error);
+        console.error('Error updating Diabeties data:', error);
     }
 };

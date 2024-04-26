@@ -7,7 +7,9 @@ import jwt
 from dotenv import load_dotenv
 import os
 from components.pneumonia_predict import pneumonia_prd
+from components.diabetis_prediction import diabetis_prd
 from exception import CustomException
+import pandas as pd
 import sys
 
 # Load variables from the .env file
@@ -60,6 +62,42 @@ def pneumonia():
         
         return jsonify(encoded_data), 200
     
+    except Exception as e:
+        raise CustomException(e, sys)
+
+@app.route('/Diabetis', methods=['POST'])
+def Diabetis():
+    try:
+        # get the data from request
+        req_data = request.get_json()
+        data = req_data.get('data')
+        print(f"Diabetis data recived from client...........", data)
+
+        data_dict = {
+            'Pregnancies': [int(data['Pregnancies'])],
+            'Glucose': [int(data['Glucose'])],
+            'BloodPressure': [int(data['BloodPressure'])],
+            'SkinThickness': [int(data['SkinThickness'])],
+            'Insulin': [int(data['Insulin'])],
+            'BMI': [float(data['BMI'])],
+            'DiabetesPedigreeFunction': [float(data['DiabetesPedigreeFunction'])],
+            'Age': [int(data['Age'])],
+        }
+        
+        # create a input as dataframe
+        df = pd.DataFrame(data_dict)
+        print('created dataframe:\n', df)
+
+        # pridict the output by passing the input data to predict methos
+        prd_data = diabetis_prd(df)
+        prd_data_dict = {'prd_class': prd_data}
+        print(f"response: {prd_data_dict}")
+
+        # encode the data 
+        encoded_data = jwt.encode(prd_data_dict, str(SECRET_KEY), algorithm='HS256') 
+
+        return jsonify(encoded_data), 200   
+     
     except Exception as e:
         raise CustomException(e, sys)
 

@@ -11,6 +11,7 @@ import {jwtDecode} from 'jwt-decode';
 import ObesityForm from './forms/ObesityForm';
 import PneumoniaForm from './forms/PneumoniaForm';
 import Header from './home-page/Header';
+import DiabetisForm from './forms/DiabetisForm';
 
 function App() {
     const token = localStorage.getItem('token');
@@ -32,7 +33,8 @@ function App() {
                 <Route path="/registor" element={<RegistorForm />} />
                 <Route path="/login" element={<LoginForm />} />  
                 <Route path="/obesity" element={<ObesityForm />} /> 
-                <Route path="/pneumonia" element={<PneumoniaForm />} />      
+                <Route path="/pneumonia" element={<PneumoniaForm />} />   
+                <Route path="/Diabetis" element={<DiabetisForm />} />   
             </Routes> 
         </userContext.Provider>             
     );

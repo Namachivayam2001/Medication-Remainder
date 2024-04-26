@@ -1,12 +1,39 @@
 .obesityForm-container{
     border: 3px solid black;
     display: flex;
-    justify-content: center;background-image: url('../../public/images/v870-tang-37.jpg');
+    justify-content: center;
+    background-image: url('../../public/images/v870-tang-37.jpg');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 }
-
+.obesityForm-container input{
+    border-radius: 0px;
+    font-size: medium;
+    border: 1.3px solid #000;
+}
+.obesityForm-container div{
+    display: flex;
+    flex-direction: column;
+}
+.obesityForm-container select{
+    padding: 6px;
+    font-size: medium;
+}
+.obesityForm-container button{
+    width: 100%;
+    font-size: 1.2em;
+    padding: 7px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+.obesityForm-container button:hover{
+    background-color: #45a049;
+}
 .obes_error_msg{
     font-size: small;
     color: red;
