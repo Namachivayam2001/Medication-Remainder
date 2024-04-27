@@ -2,6 +2,7 @@ import { useUserContext } from '../userContext';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import useForm from '../hooks/useDiabetisForm';
+import Loading from '../utils/Loading';
 import './diabetisForm.css'
 
 const DiabetisForm = () => {
@@ -13,7 +14,8 @@ const DiabetisForm = () => {
         input, 
         error, 
         handleChange, 
-        handleSubmit
+        handleSubmit,
+        loading
     } = useForm();
 
     useEffect(() => {
@@ -24,6 +26,7 @@ const DiabetisForm = () => {
     }, []);
 
     return <div className="diabetis-container">
+        {loading && <Loading />}
         <form 
             method="POST"
             className="diabetis-form"

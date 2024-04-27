@@ -15,7 +15,7 @@ def pneumonia_prd(file):
         cnn_model = CNN()
 
         # set path of .pkl file
-        path = os.path.realpath(r"../Pneumonia_CNN/model_checkpoints/model_4.pth")
+        path = os.path.realpath(r"./Pneumonia_CNN/model_checkpoints/model_4.pth")
 
         # Load the state dict
         state_dict = torch.load(path)

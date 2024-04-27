@@ -9,8 +9,9 @@ const usePneumoniaForm = () => {
     const [file, setFile] = useState(null);
     const [error, setError] = useState(null);
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(false);
     const user_val = useUserContext();
-    const {user, setUser} = user_val;
+    const {setUser} = user_val;
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -26,6 +27,8 @@ const usePneumoniaForm = () => {
         
         if(!error){
             try {
+                setLoading(true); // Set loading to true while data is being received
+                
                 const response = await axios.post('http://localhost:5000/pneumonia', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
@@ -52,20 +55,22 @@ const usePneumoniaForm = () => {
                         })
                     })
                     alert("Check Pneumonia sucessfully")
+                    setLoading(false); // Set loading to false after data is received
                     console.log('Pneumonia updated successfully...........')
                     navigate('/schedule/data');
                 }
 
             } catch (error) {
                 console.error('Error uploading image:', error);
-            }
+            } 
         }
     };
 
     return {
         handleFileChange,
         handleSubmit,
-        error
+        error,
+        loading
     };
 }
 

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { FaToggleOn, FaToggleOff } from 'react-icons/fa6';
-import Header from '../home-page/Header';
 import './scheduleList.css';
 import useList from '../hooks/useScheduleList';
 import UserDetials from './UserDetials';
+import Loading from '../utils/Loading';
 
 function ScheduleList() {   
 
@@ -23,10 +23,6 @@ function ScheduleList() {
         fetchData();
     }, []);
 
-    if (loading) {
-        return <p id ="loding">Loading...</p>;
-    }
-
     if (error) {
         return <p>{error}</p>;
     }
@@ -39,6 +35,7 @@ function ScheduleList() {
                 className={tableName}
             >  
                 <UserDetials/>
+                {loading && <Loading />}
                 <h2>Your Schedule List</h2>
                 <ul className="custom-list">
                     <li id="title">

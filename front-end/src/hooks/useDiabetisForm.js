@@ -7,6 +7,7 @@ import validate from '../utils/validateDiabetisForm'
 
 export default () => {
 
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate()    
     const value = useUserContext();    
     const {user, setUser} = value;
@@ -32,6 +33,7 @@ export default () => {
             e.preventDefault();
             setError(() => validate(input));
             if (Object.keys(validate(input)).length === 0) {
+                setLoading(true); // Set loading to true while data is being received
 
                 // send the user data to predict obesity level
                 const response = await axios.post('http://localhost:5000/Diabetis', {
@@ -57,6 +59,7 @@ export default () => {
 
                 if(db_response.data.message === 'Diabetis updated successfully'){
                     alert('Diabetis updated successfully')
+                    setLoading(false); // Set loading to false after data is received
                     navigate('/schedule/data');
                 }                      
             } 
@@ -69,6 +72,7 @@ export default () => {
         input,
         error,
         handleChange,
-        handleSubmit
+        handleSubmit,
+        loading
     }
 }

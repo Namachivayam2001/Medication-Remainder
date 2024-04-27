@@ -9,7 +9,7 @@ export default () => {
 
     const user_values = useUserContext();
     const {user, setUser} = user_values;
-
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate() 
 
     const [errors, setErrors] = useState({});
@@ -46,12 +46,13 @@ export default () => {
 
     const handleSubmit = async (e) => {
         try {
+            
             console.log(' Obesity Submission start..........')
             e.preventDefault();
             setErrors(() => validate(values));
             console.log(errors)
             if (Object.keys(validate(values)).length === 0) {
-
+                setLoading(true); // Set loading to true while data is being received
                 if(user){ 
                     // send the user data to predict obesity level
                     const response = await axios.post('http://localhost:5000/Obesity_level', {
@@ -77,6 +78,7 @@ export default () => {
                             })
                         }) 
                         alert('Obesity_level check successfully')
+                        setLoading(false); // Set loading to false after data is received
                         navigate('/schedule/data');
                     }
                 } else {
@@ -87,13 +89,14 @@ export default () => {
             } 
         } catch (error) {
             console.error('Error posting data:', error);
-        }
+        } 
     }
 
     return {
         handleChange,
         handleSubmit,
         values,
-        errors
+        errors,
+        loading
     }
 }

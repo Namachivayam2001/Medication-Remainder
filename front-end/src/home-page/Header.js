@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import React, { useState } from 'react';
+import ReportGenerator from '../utils/ReportGenerator';
 
 function Header() {
 
@@ -36,30 +37,33 @@ function Header() {
         </div>
         {isAcountOpen && (
             <ul className="dropdown">
-                <li>
+                <li style={{fontSize: 'small', fontWeight: 'bold'}}>
                     <Link to="/schedule/data" onClick={closeDropdowns}>User Detials</Link>
                 </li>
-                <li>
+                <li style={{fontSize: 'small', fontWeight: 'bold'}}>
                     <Link to="/schedule/form" onClick={closeDropdowns}>Schedule</Link>
                 </li> 
-                <li>
+                <li style={{fontSize: 'small', fontWeight: 'bold'}}>
                     <Link to="/login" onClick={closeDropdowns}>Login</Link>
                 </li>
-                <li>
+                <li style={{fontSize: 'small', fontWeight: 'bold'}}>
                     <Link to="/registor" onClick={closeDropdowns}>Register</Link>
                 </li>
             </ul>
         )}
         {isFeatureOpen && (
             <ul className="Featuredropdown">
-                <li>
-                    <Link to="/obesity" onClick={closeDropdowns}><small>Check</small> Obesity Level</Link>
+                <li style={{fontSize: 'small', fontWeight: 'bold'}}>
+                    <Link to="/obesity" onClick={closeDropdowns}>Check Obesity </Link>
                 </li>
-                <li>
-                    <Link to="/pneumonia" onClick={closeDropdowns}><small>Check</small> Pneumonia</Link>
+                <li style={{fontSize: 'small', fontWeight: 'bold'}}>
+                    <Link to="/pneumonia" onClick={closeDropdowns}>Check Pneumonia</Link>
                 </li> 
-                <li>
-                    <Link to="/Diabetis" onClick={closeDropdowns}><small>Check</small> Diabetes</Link>
+                <li style={{fontSize: 'small', fontWeight: 'bold'}}>
+                    <Link to="/Diabetis" onClick={closeDropdowns}>Check Diabetes</Link>
+                </li>
+                <li style={{fontSize: 'small', fontWeight: 'bold'}}>
+                    <ReportGenerator />
                 </li>
             </ul>
         )}

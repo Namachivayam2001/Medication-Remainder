@@ -9,37 +9,54 @@
     align-items: center;
     justify-content: center;
 }
-
+#fileUpload{
+    font-size: 16px;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px black;
+    width:350px;
+    outline: none;
+}
 .pneumoniaForm{
     display: flex;
     flex-direction: row;
-    border: 1px solid #000;
-    justify-content: space-between; /* or space-around */
-    padding: 20px;
-    width: 400px;
-    height: 80px;
     align-items: center;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    gap: 10px;
+    
 }
-
-.pneumoniaForm button{
-    padding: 3px;
-    border-radius: 3px;
-    border: 1px solid #000;
+.pneumoniaForm-container button{
+    color: white;
+    width: 111px;
+    background: #206a5d;
+    padding:20px;
+    border:none;
+    border-radius:50px;
+    box-shadow: 5px 5px 10px black;
+    outline: none;
 }
-
-.fileUpload{
-    display: flex;
-    flex-direction: column;
+.pneumoniaForm-container button:hover{
+    background: #438a5e;
 }
-
+::-webkit-file-upload-button {
+    color: white;
+    background: #206a5d;
+    padding:20px;
+    border:none;
+    border-radius:50px;
+    box-shadow: 1px 0 1px 1px #6b4559;
+    outline: none;    
+}
+::-webkit-file-upload-button:hover {
+    background: #438a5e;
+}
 #pneumoniaError{
     color: red;
+    font-size: medium;
+    margin-left: 20px;
+    font-weight: bold;
 }
-
-#fileUpload{
+.err_and_inp_container{
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }

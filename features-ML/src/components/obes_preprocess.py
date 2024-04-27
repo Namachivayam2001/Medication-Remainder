@@ -15,7 +15,7 @@ def pre_process(raw_data):
         print('obes Dataframe created..........')
 
         # set path of .pkl file
-        path = os.path.realpath(r'../playground-series-s4e2 (Obisity_pridiction)/preprocessor.pkl')
+        path = os.path.realpath(r'./playground-series-s4e2 (Obisity_pridiction)/preprocessor.pkl')
 
         preprocessor = joblib.load(path)
         print(f"obes preprocessor loded successfully..........")

@@ -2,6 +2,7 @@ import useObesityForm from '../hooks/useObesityForm';
 import { useUserContext } from '../userContext';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../utils/Loading';
 import './obesityForm.css'
 
 const ObesityForm = () => {
@@ -10,7 +11,8 @@ const ObesityForm = () => {
         handleChange,
         handleSubmit,
         values,
-        errors
+        errors,
+        loading
     } = useObesityForm();
 
     const navigate = useNavigate(); 
@@ -25,6 +27,7 @@ const ObesityForm = () => {
     }, []);
     return(
         <div className='obesityForm-container'>
+            {loading && <Loading />}
             <form 
                 className='registorForm'
                 method='POST'

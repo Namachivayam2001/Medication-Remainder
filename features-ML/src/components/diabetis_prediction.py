@@ -7,7 +7,7 @@ import os
 def diabetis_prd(data):
     try:
         # set path of .pkl file
-        path = os.path.realpath(r'../diabetis_prediction/model/model.pkl')
+        path = os.path.realpath(r'./diabetis_prediction/model/model.pkl')
 
         # load the model
         model = joblib.load(path)

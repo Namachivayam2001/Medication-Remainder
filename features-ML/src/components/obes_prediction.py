@@ -11,7 +11,7 @@ def predict(raw_data):
         pre_process_data = pre_process(raw_data)
 
         # set path of .pkl file
-        path = os.path.realpath(r'../playground-series-s4e2 (Obisity_pridiction)/model.pkl')
+        path = os.path.realpath(r'./playground-series-s4e2 (Obisity_pridiction)/model.pkl')
 
         # Load the model
         model = joblib.load(path)

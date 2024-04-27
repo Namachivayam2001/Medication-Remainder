@@ -1,5 +1,4 @@
 import './loginForm.css';
-import Header from '../home-page/Header';
 import { Link } from 'react-router-dom';
 import useForm from '../hooks/useLoginForm';
 
@@ -24,7 +23,7 @@ function LoginForm() {
                     <label 
                         className='login-email-label'
                         htmlFor='email'
-                    >
+                    >   
                         Email*
                     </label>
                     <input 
