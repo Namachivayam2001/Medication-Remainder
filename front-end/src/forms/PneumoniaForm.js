@@ -4,6 +4,7 @@ import usePneumoniaForm from '../hooks/usePneumoniaForm';
 import { useNavigate } from 'react-router-dom';
 import './pneumoniaForm.css'
 import Loading from '../utils/Loading';
+import { toast } from 'react-toastify';
 
 const Pneumonia = () => {
 
@@ -13,7 +14,7 @@ const Pneumonia = () => {
 
     useEffect(() => {
         if(!user){
-            alert("You'r not a login user, Please Login!")
+            toast.info("You'r not a login user, Please Login!");
             navigate("/login")
         }
     }, []);

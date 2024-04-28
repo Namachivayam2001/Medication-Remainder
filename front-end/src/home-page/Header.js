@@ -62,7 +62,7 @@ function Header() {
                 <li style={{fontSize: 'small', fontWeight: 'bold'}}>
                     <Link to="/Diabetis" onClick={closeDropdowns}>Check Diabetes</Link>
                 </li>
-                <li style={{fontSize: 'small', fontWeight: 'bold'}}>
+                <li style={{fontSize: 'small', fontWeight: 'bold'}} onClick={closeDropdowns}>
                     <ReportGenerator />
                 </li>
             </ul>

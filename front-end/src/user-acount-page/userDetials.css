@@ -1,17 +1,21 @@
-.userDetials{
+.userDetialsContainer {
+    display: flex;
     width: 80%;
+}
+
+.userDetials {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-items: start;
+    text-align: center;
     font-size: large;
-    margin-top: 100px;
-    margin-bottom: 50px;
+    padding: 20px;
 }
 
 #logout{
-    padding: 3px;
+    padding: 7px;
     border-radius: 5px;
+    font-size: medium;
     font-weight: bold;
     color: red;
     border: 2px solid red;

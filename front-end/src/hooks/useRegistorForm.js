@@ -2,6 +2,7 @@ import {useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import validate from '../utils/validateRegistorForm'
+import { toast } from 'react-toastify';
 
 export default () => {
 
@@ -55,23 +56,25 @@ export default () => {
 
     //handil the submit with given details
     const handleSubmit = async (e) => {
-        try {
-            e.preventDefault();
-
-            setErrors(() => validate(values));
-
-            if (Object.keys(validate(values)).length === 0) {
+        e.preventDefault();
+        setErrors(() => validate(values));
+        if (Object.keys(validate(values)).length === 0) {
+            try {
                 const response = await axios.post('http://localhost:3030/users/registor', values);
                 console.log('response recived in useRegistorForm...........');
                 if(response.data.email_repeat){
                     setErrors((prevErrors) => ({ ...prevErrors, email: 'Email already exist' }));
+                    toast.warn('Invalid input!')
                 } else {
-                    alert('form submited successfully');
+                    toast.success('Registor successfully!');
                     navigate('/login'); 
-                }           
-            } 
-        } catch (error) {
-            console.error('Error posting data:', error);
+                }  
+            } catch (error) {
+                console.error('Error posting data:', error);
+                toast.info('Server error at Registration!');
+            }         
+        } else {
+            toast.warn('Invalid input!')
         }
     }
 

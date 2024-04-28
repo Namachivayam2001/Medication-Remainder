@@ -4,10 +4,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../userContext';
 import {jwtDecode} from 'jwt-decode'
+import { toast } from 'react-toastify';
 
 export default () => {
     const value = useUserContext();
-    const {user, setUser} = value;
+    const {setUser} = value;
 
     const navigate = useNavigate()
 
@@ -33,11 +34,14 @@ export default () => {
             e.preventDefault();
             setErrors(() => validate(values));
 
-            if (Object.keys(validate(values)).length === 0 && user === null) {
+            if(localStorage.getItem('token')){
+                toast.warn(`You'r already Login, Please Logout`)
+                navigate('/schedule/data');
+            } else if (Object.keys(validate(values)).length === 0) {
                 const response = await axios.post('http://localhost:3030/users/login', values);
                 if(response.data.status ===  'Login Fail'){
                     setErrors((prevErrors) => ({ ...prevErrors, email: 'incorrect Email or password please registor', password: 'incorrect Email or password please registor' }));
-                    
+                    toast.error(' Login failed!');
                 } else {
                     const token = response.data;
                     const userData = jwtDecode(token);
@@ -46,24 +50,25 @@ export default () => {
                     setUser((pre) => ({
                         ...pre, 
                         id: userData.id,
-                        dob: userData.dob,
-                        email: userData.email,
                         first_name: userData.first_name,
-                        guardian_email: userData.guardian_email,
                         last_name: userData.last_name,
                         age: userData.age,
+                        dob: userData.dob,
+                        email: userData.email,
+                        guardian_email: userData.guardian_email,
                         Obesity_level: userData.Obesity_level,
                         Pneumonia: userData.Pneumonia,
                         Diabetis: userData.Diabetis
                     }));
-                    navigate('/');
+                    toast.success('Login successfully!');
+                    navigate('/schedule/data');
                 }
             } else {
-                alert('your alredy login please logout and then login another accout');
-                navigate('/schedule/data')
+                toast.warn('Invalid input!');
             }
         } catch (error) {
             console.error('Error posting data:', error);
+            toast.info('Server error at Login!');
         }
     }
 

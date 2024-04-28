@@ -2,6 +2,7 @@ import React from 'react';
 import { useUserContext } from '../userContext';
 import { useNavigate } from 'react-router-dom';
 import './userDetials.css';
+import { toast } from 'react-toastify';
 
 const UserDetials = () => {
     const user_values = useUserContext();
@@ -16,28 +17,31 @@ const UserDetials = () => {
     const logOut = (key) => {
         localStorage.removeItem(key);
         setUser(() => null);
+        toast.success('Logout successfully!');
         navigate('/');
     }
     return(
-        <div className='userDetials'>
-            <p id='user_name'><b>User Name : </b>{user.first_name} {user.last_name}</p>
-            <p id='age'><b>Age : </b>{user.age}</p>
-            <p id='dob'><b>DOB : </b>{year}-{month}-{day}</p>
-            <p id='email'><b>Email : </b>{user.email}</p>
-            <p id='guardian_email'><b>Guardian Email : </b>{user.guardian_email}</p>
-            {
-                user.Obesity_level
-                    && <p id='Obesity_level'><b>Obesity_level : </b>{user.Obesity_level}</p>
-            }
-            {
-                user.Pneumonia
-                    && <p id='pneumonia'><b>Pneumonia : </b>{user.Pneumonia}</p>
-            }
-            {
-                user.Diabetis
-                    && <p id='Diabetis'><b>Diabetis : </b>{user.Diabetis}</p>
-            }
-            <button id='logout' onClick={() => logOut('token')}>Logout</button>
+        <div className='userDetialsContainer'>
+            <div className='userDetials'>
+                <p id='user_name'><b>User Name : </b>{user.first_name} {user.last_name}</p>
+                <p id='age'><b>Age : </b>{user.age}</p>
+                <p id='dob'><b>DOB : </b>{year}-{month}-{day}</p>
+                <p id='email'><b>Email : </b>{user.email}</p>
+                <p id='guardian_email'><b>Guardian Email : </b>{user.guardian_email}</p>
+                {
+                    user.Obesity_level
+                        && <p id='Obesity_level'><b>Obesity_level : </b>{user.Obesity_level}</p>
+                }
+                {
+                    user.Pneumonia
+                        && <p id='pneumonia'><b>Pneumonia : </b>{user.Pneumonia}</p>
+                }
+                {
+                    user.Diabetis
+                        && <p id='Diabetis'><b>Diabetis : </b>{user.Diabetis}</p>
+                }
+                <button id='logout' onClick={() => logOut('token')}>Logout</button>
+            </div>
         </div>
     )
 }

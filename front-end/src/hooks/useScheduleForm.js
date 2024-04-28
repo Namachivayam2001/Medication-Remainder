@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import validate from '../utils/validateScheduleForm';
 import {useUserContext} from '../userContext';
+import { toast } from 'react-toastify';
 
 export default () => {
 
@@ -32,11 +33,11 @@ export default () => {
         });
     }
 
-    const handleSubmit = async (e) => {
-        try {
-            e.preventDefault();
-            setErrors(() => validate(values, user));
-            if (Object.keys(validate(values)).length === 0) {
+    const handleSubmit = async (e) => {        
+        e.preventDefault();
+        setErrors(() => validate(values, user));
+        if (Object.keys(validate(values)).length === 0) {
+            try{
                 const response = await axios.post('http://localhost:3030/schedule/form', {
                     headers: {
                         'token': `${JSON.parse(localStorage.getItem('token'))}`,
@@ -44,18 +45,20 @@ export default () => {
                     }
                 });
                 if(response.data.repeat === true){
-                    alert('schedule already exist at same time')
-                } if(response.data.inserted){
-                    //setUser(user);
-                    alert('form submited successfully');
+                    toast.warn('Schedule already exist!');
+                } 
+                if(response.data.inserted){
+                    toast.success('Schedule added successfully!');
                     navigate('/schedule/data'); 
-                }            
-            }                 
-        } catch (error) {
-            alert('you are not a authorized user please login');
-            navigate('/login'); 
-            console.error('Error posting data:', error);
-        }
+                } 
+            } catch (error) {
+                console.error('Error posting data:', error);
+                toast.info('Server error at Schedule notification!');
+            }         
+        } else {
+            toast.warn('Invalid input!');
+        }               
+        
     }
 
     return {

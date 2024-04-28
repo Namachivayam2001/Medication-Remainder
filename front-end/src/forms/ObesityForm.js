@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../utils/Loading';
 import './obesityForm.css'
+import { toast } from 'react-toastify';
 
 const ObesityForm = () => {
 
@@ -21,7 +22,7 @@ const ObesityForm = () => {
 
     useEffect(() => {
         if(!user){
-            alert("You'r not a login user, Please Login!")
+            toast.info("You'r not a login user, Please Login!");
             navigate("/login")
         }
     }, []);

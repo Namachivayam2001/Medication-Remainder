@@ -4,6 +4,7 @@ import validatePneumoniaForm from "../utils/validatePneumoniaForm";
 import { useUserContext } from "../userContext";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const usePneumoniaForm = () => {
     const [file, setFile] = useState(null);
@@ -54,7 +55,8 @@ const usePneumoniaForm = () => {
                             Pneumonia: decodedData.prd_class
                         })
                     })
-                    alert("Check Pneumonia sucessfully")
+                    
+                    toast.success('Pneumonia check successfully!');
                     setLoading(false); // Set loading to false after data is received
                     console.log('Pneumonia updated successfully...........')
                     navigate('/schedule/data');
@@ -62,7 +64,10 @@ const usePneumoniaForm = () => {
 
             } catch (error) {
                 console.error('Error uploading image:', error);
+                toast.info('Server error at Pneumonia check!');
             } 
+        } else {
+            toast.warn('Invalid input!')
         }
     };
 

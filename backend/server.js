@@ -59,8 +59,7 @@ async function sendNotifications(item) {
     async function executeFiveTimes() {
         if (notificationAttempts <= 5) {
             const notification_record = await fetchNotification(table_name, item.id);
-
-            if (notification_record.notification) {
+            if (notification_record && notification_record.notification) {
                 const emailRecord = await fetchEmail(item.user_id);
                 const user_name = `${emailRecord.first_name} ${emailRecord.last_name}`;
 

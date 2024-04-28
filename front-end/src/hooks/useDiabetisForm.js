@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode'
 import { useUserContext } from '../userContext';
 import validate from '../utils/validateDiabetisForm'
+import { toast } from 'react-toastify';
 
 export default () => {
 
@@ -58,13 +59,16 @@ export default () => {
                 })
 
                 if(db_response.data.message === 'Diabetis updated successfully'){
-                    alert('Diabetis updated successfully')
+                    toast.success(' Diabetis checked successfully!')
                     setLoading(false); // Set loading to false after data is received
                     navigate('/schedule/data');
                 }                      
-            } 
+            } else {
+                toast.warn('Invalid input!')
+            }
         } catch (error) {
             console.error('Error posting data:', error);
+            toast.info('Server error!');
         }
     }
 

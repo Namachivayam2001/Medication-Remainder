@@ -4,6 +4,9 @@ import './scheduleList.css';
 import useList from '../hooks/useScheduleList';
 import UserDetials from './UserDetials';
 import Loading from '../utils/Loading';
+import { useUserContext } from '../userContext';
+import { useNavigate } from "react-router-dom"; 
+import { toast } from 'react-toastify';
 
 function ScheduleList() {   
 
@@ -13,20 +16,22 @@ function ScheduleList() {
         fetchData,
         data,
         loading,
-        error,
     } = useList();
 
-    const tableName = data.length < 3 ? 'small-table' : 'large-table';
+    const navigate = useNavigate();
+    const user_values = useUserContext();
+    const {user} = user_values;
+    const tableName = (data.length > 2 && Object.keys(user).length > 6) ? 'large-table' : 'small-table' ;
 
     /* Fetching the data from server when it renders */
     useEffect(() => {
-        fetchData();
+        if(!user){
+            toast.info("You'r not a login user, Please Login!");
+            navigate("/login")
+        }else{
+            fetchData();
+        }        
     }, []);
-
-    if (error) {
-        return <p>{error}</p>;
-    }
-
     
     return (
         <>
@@ -34,7 +39,7 @@ function ScheduleList() {
                 id="scheduleListContainer"
                 className={tableName}
             >  
-                <UserDetials/>
+                {user && <UserDetials/>}
                 {loading && <Loading />}
                 <h2>Your Schedule List</h2>
                 <ul className="custom-list">
@@ -44,7 +49,7 @@ function ScheduleList() {
                         <p className="hint-head">Hint</p>
                         <p className="action-head">Action</p>
                     </li>
-                    {data.map((item) => (
+                    {data && data.map((item) => (
                         <li 
                             key={item.id} 
                             className="list-items"

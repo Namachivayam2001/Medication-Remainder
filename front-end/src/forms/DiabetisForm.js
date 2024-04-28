@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import useForm from '../hooks/useDiabetisForm';
 import Loading from '../utils/Loading';
 import './diabetisForm.css'
+import { toast } from 'react-toastify';
 
 const DiabetisForm = () => {
     const navigate = useNavigate()
@@ -20,7 +21,7 @@ const DiabetisForm = () => {
 
     useEffect(() => {
         if(!user){
-            alert("You'r not a login user, Please Login!")
+            toast.info("You'r not a login user, Please Login!")
             navigate("/login")
         }
     }, []);

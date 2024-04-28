@@ -1,9 +1,9 @@
 import './scheduleForm.css';
-import Header from '../home-page/Header';
 import useForm from '../hooks/useScheduleForm';
 import { useUserContext } from '../userContext';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function ScheduleForm() {
 
@@ -20,7 +20,7 @@ function ScheduleForm() {
 
     useEffect(() => {
         if(!user){
-            alert("You'r not a login user, Please Login!")
+            toast.info("You'r not a login user, Please Login!");
             navigate("/login")
         }
     }, []);
