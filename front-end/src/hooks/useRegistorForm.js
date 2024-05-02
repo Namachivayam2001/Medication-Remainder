@@ -71,7 +71,7 @@ export default () => {
                 }  
             } catch (error) {
                 console.error('Error posting data:', error);
-                toast.info('Server error at Registration!');
+                toast.error('Server error at Registration!');
             }         
         } else {
             toast.warn('Invalid input!')

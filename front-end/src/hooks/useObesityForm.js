@@ -79,7 +79,7 @@ export default () => {
                 }
             } catch(error) {
                 console.log('Obesity update error: ', error)
-                toast.info('Server error at Obesity Check!');
+                toast.error('Server error at Obesity Check!');
             }                  
         } else {
             toast.warn('Invalid input!')

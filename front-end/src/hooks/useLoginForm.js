@@ -68,7 +68,7 @@ export default () => {
             }
         } catch (error) {
             console.error('Error posting data:', error);
-            toast.info('Server error at Login!');
+            toast.error('Server error at Login!');
         }
     }
 

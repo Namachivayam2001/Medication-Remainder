@@ -53,7 +53,7 @@ export default () => {
                 } 
             } catch (error) {
                 console.error('Error posting data:', error);
-                toast.info('Server error at Schedule notification!');
+                toast.error('Server error at Schedule notification!');
             }         
         } else {
             toast.warn('Invalid input!');

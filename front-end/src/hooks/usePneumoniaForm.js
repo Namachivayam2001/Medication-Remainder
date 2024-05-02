@@ -26,7 +26,7 @@ const usePneumoniaForm = () => {
         const formData = new FormData(); 
         formData.append('image', file);
         
-        if(!error){
+        if(!validatePneumoniaForm(file)){
             try {
                 setLoading(true); // Set loading to true while data is being received
                 
@@ -64,10 +64,10 @@ const usePneumoniaForm = () => {
 
             } catch (error) {
                 console.error('Error uploading image:', error);
-                toast.info('Server error at Pneumonia check!');
+                toast.error('Server error at Pneumonia check!');
             } 
         } else {
-            toast.warn('Invalid input!')
+            toast.warn(`Invalid input!`)
         }
     };
 

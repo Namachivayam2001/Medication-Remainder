@@ -2,15 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import { useUserContext } from '../userContext';
 import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom"; 
 import { toast } from 'react-toastify';
 
 export default () =>  {
 
     const user_values = useUserContext();
     const {user} = user_values;
-
-    const navigate = useNavigate();
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -83,7 +80,7 @@ export default () =>  {
         }).catch (error => {
             console.error('Error fetching data:', error);
             setLoading(false);
-            toast.info('Server error at fetching data!');
+            toast.error('Server error at fetching data!');
         })        
     };
 

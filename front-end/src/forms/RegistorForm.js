@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import './registorForm.css';
-import Header from '../home-page/Header';
 import useForm from '../hooks/useRegistorForm';
 
 function RegistorForm() {
