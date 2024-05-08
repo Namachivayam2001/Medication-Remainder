@@ -19,8 +19,8 @@ export default (values) => {
     
     ! Height
         ? errors.Height = 'height required'
-        : !(Height <= 300 && Height >= 50)
-            && (errors.Height = 'Range of Height must be 50 to 300 cm')
+        : !(Height <= 3 && Height >= 0.5)
+            && (errors.Height = 'Range of Height must be 0.5 to 3 m')
 
     ! Weight
         ? errors.Weight = 'weight required'

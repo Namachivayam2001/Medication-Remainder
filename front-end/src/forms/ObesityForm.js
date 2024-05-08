@@ -48,7 +48,7 @@ const ObesityForm = () => {
                         type='number'
                         value={values.Height}
                         name='Height'
-                        placeholder='Enter the Height in cm'
+                        placeholder='Enter the Height in metres'
                         onChange={(e) => handleChange(e)}
                         style={{
                             borderColor: errors.Height && 'red',

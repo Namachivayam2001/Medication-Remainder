@@ -12,6 +12,7 @@ import ObesityForm from './forms/ObesityForm';
 import PneumoniaForm from './forms/PneumoniaForm';
 import Header from './home-page/Header';
 import DiabetisForm from './forms/DiabetisForm';
+import Help from './home-page/Help';
 
 function App() {
     const token = localStorage.getItem('token');
@@ -35,6 +36,7 @@ function App() {
                 <Route path="/obesity" element={<ObesityForm />} /> 
                 <Route path="/pneumonia" element={<PneumoniaForm />} />   
                 <Route path="/Diabetis" element={<DiabetisForm />} />   
+                <Route path="/Help" element={<Help/>} />   
             </Routes> 
         </userContext.Provider>             
     );

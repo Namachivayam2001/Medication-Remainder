@@ -16,9 +16,9 @@ def get_requirements(file_path:str) -> List[str]:
         
 
 setup(
-    name = 'obise-level-prediction-project',
+    name = 'ML Features',
     version = '1.0.0',
-    author = 'newton',
+    author = 'Namachivayam',
     author_email = 'newtonremo143@gmail.com',
     packages = find_packages(),
     install_requires = get_requirements('requirements.txt')

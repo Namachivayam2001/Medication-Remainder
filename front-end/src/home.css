@@ -24,7 +24,6 @@
   padding: 5px 10px;
   width: 150px;
   text-align: center;
-  font-weight: bold;
 }
 
 .navebar a{
@@ -43,9 +42,29 @@ li:hover{
   cursor: pointer;
 }
 
-.contact-icon, .login-icon, .features-icon{
+.contact-icon, .login-icon, .features-icon, .help-icon{
   border-left: 2px solid #fff;
 }
+
+.help-container{
+	margin-top: 100px;
+	padding: 20px;
+}
+
+.help-container h3{
+	margin: 10px 0px;
+} 
+
+.help-container h1{
+	margin-bottom: 50px;
+} 
+
+.help-container ol{
+	display:flex;
+	flex-direction: column;
+	margin: 10px;
+	gap: 10px;
+} 
 
 /*sub-main-1 content styles */
 #main-container{
